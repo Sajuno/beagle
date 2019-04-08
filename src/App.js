@@ -5,6 +5,7 @@ import "./App.css";
 import { Route } from "react-router-dom";
 import Dogopedia from "./components/DogopediaContainer";
 import GameOne from "./components/GameOneContainer";
+import DogopediaDetails from "./components/DogopediaDetails";
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
         <main>
           <Route exact path="/game-one" component={GameOne} />
           <Route exact path="/dogopedia" component={Dogopedia} />
+          <Route path="/dogopedia/:dogType" component={DogopediaDetails} />
         </main>
       </div>
     );
