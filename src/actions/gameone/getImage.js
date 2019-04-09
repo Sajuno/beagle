@@ -8,3 +8,5 @@ export function getImage(breed) {
             .then(res => dispatch(setImage(res.body.message)))
     }
 }
+
+//Deprecated

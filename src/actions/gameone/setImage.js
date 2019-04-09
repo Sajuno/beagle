@@ -6,3 +6,5 @@ export function setImage(image) {
         payload: image,
     }
 }
+
+//Deprecated
