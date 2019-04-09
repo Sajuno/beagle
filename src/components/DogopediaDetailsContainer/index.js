@@ -7,7 +7,6 @@ export default class DogopediaDetailsContainer extends Component {
 
   componentDidMount() {
     const breed = this.props.match.params.dogType;
-    console.log(breed);
     request
       .get(
         `https://dog.ceo/api/breed/${encodeURIComponent(
@@ -18,6 +17,17 @@ export default class DogopediaDetailsContainer extends Component {
         this.updateImages(response.body.message);
       })
       .catch(console.error);
+
+    request
+      .get(
+        `https://en.wikipedia.org/w/api.php?action=opensearch&origin=*&formatversion=2&${encodeURIComponent(
+          breed
+        )}")`
+      )
+      .then(response => {
+        this.updateWikiInfo(response.body.message);
+      })
+      .catch(console.error);
   }
 
   updateImages(images) {
@@ -26,10 +36,20 @@ export default class DogopediaDetailsContainer extends Component {
     });
   }
 
+  updateWikiInfo(wikiInfo) {
+    this.setState({
+      wikiInfo: wikiInfo
+    });
+  }
+
   render() {
     return (
       <div>
-        <DogopediaDetails match={this.props.match} images={this.state.images} />
+        <DogopediaDetails
+          match={this.props.match}
+          images={this.state.images}
+          wikiInfo={this.state.wikiInfo}
+        />
       </div>
     );
   }

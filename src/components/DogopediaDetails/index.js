@@ -7,7 +7,8 @@ export default function DogopediaDetails(props) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  console.log("props in DogopediaDetails:", props);
+  const wikiInfo = props.wikiInfo;
+  console.log("props in DogopediaDetails:", wikiInfo);
   const images = props.images;
   const dogName = capitalizeFirstLetter(props.match.params.dogType);
   return (
@@ -16,6 +17,7 @@ export default function DogopediaDetails(props) {
         Here's some images of the {dogName}
         <br />
       </div>
+      <div className="dogWikiDiv">{wikiInfo}</div>
       <div className="dogImageContainerDiv">
         {images &&
           images.map(url => (
