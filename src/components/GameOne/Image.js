@@ -11,7 +11,7 @@ class Image extends Component {
         if(!this.props.breed.image) return 'loading'
         return (
             <div>
-                {this.props.breed.image[0]}
+                <img src={this.props.breed.image} alt="dog" />
             </div>
         )
     }

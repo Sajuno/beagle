@@ -11,7 +11,7 @@ export default (state = initialState, action = {}) => {
         return state.map(breed => {
             const checkBreed = new RegExp("/" + breed + "/")
             if(action.payload[0].match(checkBreed)) {
-                return {name: breed, image: action.payload}
+                return {name: breed, image: action.payload[0]}
             } else {
                 return breed
             }
