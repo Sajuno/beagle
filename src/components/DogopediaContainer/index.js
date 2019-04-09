@@ -9,6 +9,7 @@ export default class DogopediaContainer extends Component {
     request
       .get("https://dog.ceo/api/breeds/list/all")
       .then(response => {
+        console.log(response);
         const dogTypes = Object.keys(response.body.message);
         this.updateDogTypes(dogTypes);
       })

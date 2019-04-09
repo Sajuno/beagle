@@ -5,7 +5,7 @@ import "./App.css";
 import { Route } from "react-router-dom";
 import Dogopedia from "./components/DogopediaContainer";
 import GameOne from "./components/GameOneContainer";
-import DogopediaDetails from "./components/DogopediaDetails";
+import DogopediaDetails from "./components/DogopediaDetailsContainer";
 
 class App extends Component {
   render() {
