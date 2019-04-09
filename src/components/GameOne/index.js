@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { getDogs } from '../../actions/gameone/getDogs'
 import { connect } from 'react-redux'
+import Image from './Image'
 
 class GameOne extends Component {
     componentDidMount() {
@@ -8,9 +9,10 @@ class GameOne extends Component {
     }
 
     render() {
+        if(!this.props.gameOneDogs) return 'loading...'
         return (
             <div>
-              asd
+                <Image breed={this.props.gameOneDogs[0]} />
             </div> 
         )
     }

@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
 import reducer from "./reducer";
-import gameone from './gameone'
+import gameOneDogs from './gameOneDogs'
 
-export default combineReducers({ reducer, gameone });
+export default combineReducers({ reducer, gameOneDogs });
