@@ -4,14 +4,26 @@ import {getImage} from '../../actions/gameone/getImage'
 
 class Image extends Component {
     componentDidMount() {
-        this.props.getImage(this.props.breed)
+        this.props.breeds.forEach(dog => this.props.getImage(dog))
+    }
+
+    renderImage = (name, image) => {
+        return (
+            <div>
+                <img src={image} alt={name} />
+                {name}
+            </div>
+        )
     }
 
     render() {
-        if(!this.props.breed.image) return 'loading'
+        const index = Math.floor(Math.random() * this.props.breeds.length)
+        const dogName = this.props.breeds[index].name
+        const dogImage = this.props.breeds[index].image
+        if(!this.props.breeds[0].image) return 'loading...'
         return (
             <div>
-                <img src={this.props.breed.image} alt="dog" />
+                {this.renderImage(dogName, dogImage)}
             </div>
         )
     }

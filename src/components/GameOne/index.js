@@ -12,7 +12,7 @@ class GameOne extends Component {
         if(!this.props.gameOneDogs) return 'loading...'
         return (
             <div>
-                <Image breed={this.props.gameOneDogs[0]} />
+                <Image breeds={this.props.gameOneDogs} />
             </div> 
         )
     }
