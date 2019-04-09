@@ -10,8 +10,8 @@ export default (state = initialState, action = {}) => {
     case SET_IMAGE:
         return state.map(breed => {
             const checkBreed = new RegExp("/" + breed + "/")
-            if(action.payload[0].match(checkBreed)) {
-                return {name: breed, image: action.payload[0]}
+            if(action.payload.match(checkBreed)) {
+                return {name: breed, image: action.payload}
             } else {
                 return breed
             }

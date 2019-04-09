@@ -1,38 +1,31 @@
 import React, { Component } from 'react'
-import {connect} from 'react-redux'
-import {getImage} from '../../actions/gameone/getImage'
+import {shuffle} from './shuffle'
 
-class Image extends Component {
-    componentDidMount() {
-        this.props.breeds.forEach(dog => this.props.getImage(dog))
-    }
-
+export default class Image extends Component {
     renderImage = (name, image) => {
         return (
             <div>
                 <img src={image} alt={name} />
-                {name}
             </div>
+        )
+    }
+
+    renderButtons = (correctName) => {
+        const wrongNameOne = this.props.gameOneDogs[Math.floor(Math.random() * this.props.gameOneDogs.length)]
+        const wrongNameTwo = this.props.gameOneDogs[Math.floor(Math.random() * this.props.gameOneDogs.length)]
+        const buttons = shuffle([correctName, wrongNameOne.name, wrongNameTwo.name])
+        return (
+            buttons.map(button => {
+                return <button>{button}</button>
+            })
         )
     }
 
     render() {
-        const index = Math.floor(Math.random() * this.props.breeds.length)
-        const dogName = this.props.breeds[index].name
-        const dogImage = this.props.breeds[index].image
-        if(!this.props.breeds[0].image) return 'loading...'
         return (
             <div>
-                {this.renderImage(dogName, dogImage)}
+                {this.renderImage(this.props.breed, this.props.image)}
             </div>
         )
     }
 }
-
-const mapStateToProps = (state) => {
-    return {
-        gameOneDogs: state.gameOneDogs
-    }
-}
-
-export default connect(mapStateToProps, { getImage })(Image)

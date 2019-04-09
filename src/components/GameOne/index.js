@@ -5,14 +5,14 @@ import Image from './Image'
 
 class GameOne extends Component {
     componentDidMount() {
-        this.props.getDogs()
+        this.props.getDogs(50)
     }
 
     render() {
         if(!this.props.gameOneDogs) return 'loading...'
         return (
             <div>
-                <Image breeds={this.props.gameOneDogs} />
+                <Image breed={this.props.gameOneDogs[50].name} image={this.props.gameOneDogs[50].image} />
             </div> 
         )
     }
