@@ -12,8 +12,7 @@ export default function ScoreBoard(props) {
         <br />
         <div className="ScoreBoardScoreDiv"> {props.user.score}</div>
         <br />
-        <div className="ScoreBoardPercentageDiv" />
-        Here' we'll show a cool percentage counter
+        <div className="ScoreBoardPercentageBar" datavalue="85" />
       </div>
     </div>
   );
