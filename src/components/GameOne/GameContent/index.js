@@ -34,7 +34,7 @@ class GameContent extends Component {
     }
 
     initQuestion = () => {
-        const breed = getRandomBreed(this.props.breeds)
+        const breed = getRandomBreed(this.props.breedsInUse)
         this.props.addUsedBreed(breed)
         request(`https://dog.ceo/api/breed/${breed}/images/random/1`)
             .then(res => this.setState({
