@@ -6,22 +6,15 @@ import { setUserName } from "../../actions/setUserName";
 class LandingPageContainer extends Component {
   state = {};
 
-  //   updateUserName(userName) {
-  //     this.setState({
-  //       user: {
-  //         name: userName
-  //       }
-  //     });
-  //   }
-
-  // askUserName() {
-  //   let userName = prompt("What is your name?");
-  //   if (userName == null || userName.length < 2) userName = "John Doe";
-  //   return userName;
-  // }
+  askUserName() {
+    let userName = prompt("What is your name?");
+    if (userName == null || userName.length < 2) userName = "John Doe";
+    return userName;
+  }
 
   componentDidMount() {
-    this.props.setUserName("Bob");
+    // wait 1 second with asking username so page can render
+    setTimeout(() => this.props.setUserName(this.askUserName()), 1000);
   }
 
   render() {
