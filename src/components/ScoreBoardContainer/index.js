@@ -3,13 +3,6 @@ import ScoreBoard from "../ScoreBoard";
 import {connect} from 'react-redux'
 
 class ScoreBoardContainer extends Component {
-
-  // updateState(dogTypes) {
-  //   this.setState({
-  //     //   dogTypes: dogTypes
-  //   });
-  // }
-
   componentDidMount() {
     console.log(this.props.user)
   }

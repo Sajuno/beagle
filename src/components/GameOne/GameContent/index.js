@@ -4,6 +4,10 @@ import {renderButtons} from './renderButtons'
 import {getRandomBreed} from './getRandomBreed'
 import {addUsedBreed} from '../../../actions/gameone/addUsedBreed'
 import {setUserScore} from '../../../actions/user/setUserScore'
+import {incrementCorrectGuesses} from '../../../actions/user/incrementGuesses'
+import {resetCorrectGuesses} from '../../../actions/user/resetGuesses'
+import {setDogsInUse} from '../../../actions/gameone/setDogsInUse'
+import {selectRandomItems} from '../selectRandomItems'
 import {connect} from 'react-redux'
 
 class GameContent extends Component {
@@ -16,9 +20,15 @@ class GameContent extends Component {
     checkAnswer = (answer) => {
         if(answer === this.state.breed) {
             this.props.setUserScore(true)
+            this.props.incrementCorrectGuesses()
+            if(this.props.user.correctGuessesInARow === 5) {
+                this.props.setDogsInUse(selectRandomItems(3, this.props.breeds))
+                this.props.resetCorrectGuesses()
+            }
             alert("You are correct!")
         } else {
             this.props.setUserScore(false)
+            this.props.resetCorrectGuesses()
             alert(`You are wrong, the right answer was ${this.state.breed}`)
         }
     }
@@ -63,8 +73,15 @@ class GameContent extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        usedBreeds: state.usedBreeds
+        usedBreeds: state.usedBreeds,
+        user: state.user
     }
 }
 
-export default connect(mapStateToProps, { addUsedBreed, setUserScore })(GameContent)
+export default connect(mapStateToProps, { 
+    addUsedBreed, 
+    setUserScore, 
+    incrementCorrectGuesses, 
+    setDogsInUse, 
+    resetCorrectGuesses 
+})(GameContent)
