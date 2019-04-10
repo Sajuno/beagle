@@ -7,8 +7,8 @@ export function renderButtons(wrongOne, wrongTwo, correct, handleClick) {
     return (
         buttons.map(button => 
             button === correct 
-                ? <button value={`Good job! It was a ${button}`} onClick={handleClick}>{button}</button> 
-                : <button value={`Sorry, it was not a ${button}`} onClick={handleClick}>{button}</button>
+                ? <button value={button} onClick={handleClick}>{button}</button> 
+                : <button value={button} onClick={handleClick}>{button}</button>
         )
     )
 }
