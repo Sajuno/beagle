@@ -1,17 +1,16 @@
 import React, { Component } from "react";
 import ScoreBoard from "../ScoreBoard";
-import {connect} from 'react-redux'
+import { connect } from "react-redux";
 
 class ScoreBoardContainer extends Component {
-
-  // updateState(dogTypes) {
-  //   this.setState({
-  //     //   dogTypes: dogTypes
-  //   });
-  // }
-
   componentDidMount() {
-    console.log(this.props.user)
+    console.log(this.props.user);
+  }
+
+  calculateAverageScore() {
+    const average = 0;
+
+    return average;
   }
 
   render() {
@@ -24,10 +23,10 @@ class ScoreBoardContainer extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-      user: state.user
-  }
-}
+    user: state.user
+  };
+};
 
-export default connect(mapStateToProps)(ScoreBoardContainer)
+export default connect(mapStateToProps)(ScoreBoardContainer);
