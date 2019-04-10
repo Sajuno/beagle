@@ -15,7 +15,9 @@ export default class GameContent extends Component {
     handleKeyUp(event) {
         switch(event.key) {
             case 'a':
-                console.log(event.key)
+                console.log(event)
+                // alert(event.target.value)
+                // this.initQuestion()
                 break
             case 's':
                 console.log(event.key)
