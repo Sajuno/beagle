@@ -15,19 +15,17 @@ export default class GameContent extends Component {
     handleKeyUp(event) {
         switch(event.key) {
             case 'a':
-                console.log(event)
-                // alert(event.target.value)
-                // this.initQuestion()
+                document.getElementById('A').click()
                 break
             case 's':
-                console.log(event.key)
+                document.getElementById('S').click()
                 break
             case 'd':
-                console.log(event.key)
+                document.getElementById('D').click()
                 break
 
             default:
-            break
+                break
         }
       }
 

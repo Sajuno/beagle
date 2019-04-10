@@ -15,7 +15,7 @@ export function renderButtons(wrongOne, wrongTwo, correct, handleClick) {
                         : text
                 }
                 onClick={handleClick}
-                key={letter}
+                id={letter}
             >
                 {letter}: {text}
             </button> 
