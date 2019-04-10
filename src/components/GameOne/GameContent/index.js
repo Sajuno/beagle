@@ -1,33 +1,30 @@
 import React, { Component } from 'react'
 import request from 'superagent'
-import {shuffle} from '../shuffle'
+import {renderButtons} from './renderButtons'
+import {getRandomBreed} from './getRandomBreed'
 
 export default class GameContent extends Component {
-    state = {}
+    state = { }
 
     componentDidMount() {
-        const breed = this.props.breed
-        request(`https://dog.ceo/api/breed/${breed}/images/random/1`)
-            .then(res => this.setState({image: res.body.message[0]}))   
+        this.initQuestion()
     }
 
     handleClick = (evt) => {
         alert(evt.target.value)
+        this.initQuestion()
     }
 
-    renderButtons = () => {
-        const wrongOne = this.props.wrongBreeds[0]
-        const wrongTwo = this.props.wrongBreeds[1]
-        const correct = this.props.breed
-        const buttons = shuffle([correct, wrongOne, wrongTwo])
-
-        return (
-            buttons.map(button => 
-                button === correct 
-                    ? <button value={`Good job! It was a ${button}`} onClick={this.handleClick}>{button}</button> 
-                    : <button value={`Sorry, it was not a ${button}`} onClick={this.handleClick}>{button}</button>
-            )
-        )
+    initQuestion = () => {
+        const breed = getRandomBreed(this.props.breeds)
+        request(`https://dog.ceo/api/breed/${breed}/images/random/1`)
+            .then(res => this.setState({image: res.body.message[0], 
+                breed, 
+                wrong: [
+                    getRandomBreed(this.props.breeds), 
+                    getRandomBreed(this.props.breeds)
+                ]
+            }))   
     }
 
     render() {
@@ -35,7 +32,7 @@ export default class GameContent extends Component {
         return (
             <>
                 <img src={this.state.image} alt={this.props.breed}/>
-                {this.renderButtons()}
+                {renderButtons(this.state.wrong[0], this.state.wrong[1], this.state.breed, this.handleClick)}
             </>
         )
     }

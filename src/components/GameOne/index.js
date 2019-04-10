@@ -9,17 +9,11 @@ class GameOne extends Component {
         this.props.getDogs()
     }
 
-    getRandomBreed = () => {
-        const randIndex = Math.floor(Math.random() * this.props.gameOneDogs.length)
-        const breed = this.props.gameOneDogs[randIndex]
-        return breed
-    }
-
     render() {
         if(!this.props.gameOneDogs) return 'loading...'
         return (
             <div>
-                <GameContent breed={this.getRandomBreed()} wrongBreeds={[this.getRandomBreed(), this.getRandomBreed()]} />
+                <GameContent breeds={this.props.gameOneDogs} />
             </div> 
         )
     }
