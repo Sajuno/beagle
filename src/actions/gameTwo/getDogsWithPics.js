@@ -11,13 +11,14 @@ export default function getDogsWithPics() {
             return DogList2
         })
         .then(data => {
-            Promise.all(data.map(breed => {
+            data.map(breed => {
                 request(`https://dog.ceo/api/breed/${breed}/images/random/1`)
                     .then(response => {
                     DogListWithPictures.push({[breed]: response.body.message[0]})
-                    return DogListWithPictures
-                    })
-            }))
+                })
+                return DogListWithPictures
+            })
+            return DogListWithPictures
         })
         .then(doglistwithpics => {
             console.log("getDogsWithPics: ", doglistwithpics)
