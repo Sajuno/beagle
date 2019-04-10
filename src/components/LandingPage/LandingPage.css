@@ -1,0 +1,91 @@
+.mainDiv {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 180%;
+    margin: auto;
+}
+
+.mainHeaderDiv {
+    text-align: center;
+    background: lightblue;
+    padding: 15px 15px 0px 15px;
+    animation: animateleft 3.0s;
+}
+
+.bigFlexBox {
+    display: flex;
+}
+
+.flexBoxLeft {}
+
+.flexBoxRight {
+    width: 50%;
+}
+
+.dogopediaLeft {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background: #ffffff;
+    height: 80vh;
+    font-size: 100%;
+}
+
+.dogopediaLeft img {
+    margin: 15px 15px 15px 15px;
+}
+
+#ManyDogs {
+    margin: auto;
+    width: 70%;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 1px;
+    animation: App-logo-spin infinite 10s linear;
+}
+
+#Manydogs:hover {
+    animation: App-logo-spin infinite 1s linear;
+}
+
+.dogopediaLeft h1 {
+    font-size: 120%;
+}
+
+.gameOneMainDiv {
+    background: darkgreen;
+    width: 100%;
+}
+
+.gameTwoMainDiv {
+    background: mediumseagreen;
+}
+
+.gameThreeMainDiv {
+    background: yellow;
+}
+
+.footer {
+    font-size: 16px;
+    text-align: center;
+    padding: 50px;
+}
+
+@keyframes animateleft {
+    from {
+        left: -300px;
+        opacity: 0
+    }
+    to {
+        left: 0;
+        opacity: 1
+    }
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
