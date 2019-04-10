@@ -2,13 +2,32 @@ import React, { Component } from 'react'
 import request from 'superagent'
 import {renderButtons} from './renderButtons'
 import {getRandomBreed} from './getRandomBreed'
+import './index.css'
 
 export default class GameContent extends Component {
     state = { }
 
     componentDidMount() {
         this.initQuestion()
+        window.addEventListener('keyup', this.handleKeyUp)
     }
+
+    handleKeyUp(event) {
+        switch(event.key) {
+            case 'a':
+                console.log(event.key)
+                break
+            case 's':
+                console.log(event.key)
+                break
+            case 'd':
+                console.log(event.key)
+                break
+
+            default:
+            break
+        }
+      }
 
     handleClick = (evt) => {
         alert(evt.target.value)
