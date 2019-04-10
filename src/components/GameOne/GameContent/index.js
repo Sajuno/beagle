@@ -3,6 +3,7 @@ import request from 'superagent'
 import {renderButtons} from './renderButtons'
 import {getRandomBreed} from './getRandomBreed'
 import {addUsedBreed} from '../../../actions/gameone/addUsedBreed'
+import {setUserScore} from '../../../actions/user/setUserScore'
 import {connect} from 'react-redux'
 
 class GameContent extends Component {
@@ -14,8 +15,10 @@ class GameContent extends Component {
 
     checkAnswer = (answer) => {
         if(answer === this.state.breed) {
+            this.props.setUserScore(true)
             alert("You are correct!")
         } else {
+            this.props.setUserScore(false)
             alert(`You are wrong, the right answer was ${this.state.breed}`)
         }
     }
@@ -64,4 +67,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { addUsedBreed })(GameContent)
+export default connect(mapStateToProps, { addUsedBreed, setUserScore })(GameContent)

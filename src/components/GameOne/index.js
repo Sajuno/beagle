@@ -3,6 +3,7 @@ import { getDogs } from '../../actions/gameone/getDogs'
 import { setDogsInUse } from '../../actions/gameone/setDogsInUse'
 import { connect } from 'react-redux'
 import GameContent from './GameContent'
+import ScoreboardContainer from '../ScoreBoardContainer'
 
 
 class GameOne extends Component {
@@ -14,7 +15,8 @@ class GameOne extends Component {
         if(!this.props.dogsInUse[0]) return 'loading...'
         return (
             <div>
-                <GameContent breedsInUse={this.props.dogsInUse} breeds={this.props.gameOneDogs}/>
+                <GameContent breedsInUse={this.props.dogsInUse} breeds={this.props.gameOneDogs} />
+                <ScoreboardContainer />
             </div> 
         )
     }
