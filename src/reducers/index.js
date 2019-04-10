@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
-import setUser from "./setUser";
+import user from "./user";
 import gameOneDogs from './gameOneDogs'
 import usedBreeds from './usedBreeds'
 import dogsInUse from './dogsInUse'
 
 export default combineReducers({ 
-    setUser, 
+    user, 
     gameOneDogs, 
     usedBreeds, 
     dogsInUse 

@@ -40,7 +40,7 @@
     border-radius: 50%;
     border-style: solid;
     border-width: 1px;
-    animation: App-logo-spin infinite 0.1s linear;
+    animation: App-logo-spin infinite 5.0s linear;
 }
 
 #Manydogs:hover {

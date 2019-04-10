@@ -4,11 +4,11 @@ import ScoreBoard from "./ScoreBoard";
 export default class ScoreBoardContainer extends Component {
   state = { dogTypes: null };
 
-  updateState(dogTypes) {
-    this.setState({
-      //   dogTypes: dogTypes
-    });
-  }
+  // updateState(dogTypes) {
+  //   this.setState({
+  //     //   dogTypes: dogTypes
+  //   });
+  // }
 
   componentDidMount() {}
 
