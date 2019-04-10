@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import request from 'superagent'
-import {shuffle} from './shuffle'
+import {shuffle} from '../shuffle'
 
 export default class GameContent extends Component {
     state = {}

@@ -5,8 +5,6 @@ import GameContent from './GameContent'
 
 
 class GameOne extends Component {
-    state = {gameStarted: false}
-
     componentDidMount() {
         this.props.getDogs()
     }
