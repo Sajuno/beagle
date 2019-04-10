@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import "./App.css";
 import { Route } from "react-router-dom";
 import Dogopedia from "./components/DogopediaContainer";
-import GameOne from "./components/GameOneContainer";
+import GameOne from "./components/GameOne";
 import DogopediaDetailsContainer from "./components/DogopediaDetailsContainer";
 import LandingPageContainer from "./components/LandingPageContainer";
 
