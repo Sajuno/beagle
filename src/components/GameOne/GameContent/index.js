@@ -50,8 +50,10 @@ export default class GameContent extends Component {
         if(!this.state.image) return 'loading...'
         return (
             <>
-                <img src={this.state.image} alt={this.props.breed}/>
-                {renderButtons(this.state.wrong[0], this.state.wrong[1], this.state.breed, this.handleClick)}
+                <img class="GameOne" src={this.state.image} alt={this.props.breed}/>
+                    <div class="GameOneButtons">
+                    {renderButtons(this.state.wrong[0], this.state.wrong[1], this.state.breed, this.handleClick)}
+                    </div>
             </>
         )
     }
