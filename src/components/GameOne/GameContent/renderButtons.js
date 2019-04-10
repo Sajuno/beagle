@@ -5,7 +5,7 @@ export function renderButtons(wrongOne, wrongTwo, correct, handleClick) {
     const answers = shuffle([correct, wrongOne, wrongTwo])
     const keyMap = ['A','S','D']
 
-    const answersWithLetters = answers.map(answer => ({ text: answer, letter: keyMap }))
+    const answersWithLetters = answers.map((answer, i )=> ({ text: answer, letter: keyMap[i] }))
     return (
         answersWithLetters.map(({ text, letter }) => 
             <button
