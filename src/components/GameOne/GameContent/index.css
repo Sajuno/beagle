@@ -32,7 +32,7 @@ p.letter {
 button.GameOne {
     color: white;
     background: linear-gradient(90deg, 
-     orange 25%, chocolate 25% 100%);
+     crimson 25%, tomato 25% 100%);
 
     font-size: 1.2rem;
     text-transform: capitalize;
