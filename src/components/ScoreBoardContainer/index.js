@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import ScoreBoard from "./ScoreBoard";
+import ScoreBoard from "../ScoreBoard";
+import {connect} from 'react-redux'
 
-export default class ScoreBoardContainer extends Component {
-  state = { dogTypes: null };
+class ScoreBoardContainer extends Component {
 
   // updateState(dogTypes) {
   //   this.setState({
@@ -10,14 +10,24 @@ export default class ScoreBoardContainer extends Component {
   //   });
   // }
 
-  componentDidMount() {}
+  componentDidMount() {
+    console.log(this.props.user)
+  }
 
   render() {
-    if (!this.state.dogTypes) return "Loading...";
+    if (!this.props.user) return "Loading...";
     return (
       <div>
-        <ScoreBoard userData={this.state.userData} />
+        <ScoreBoard user={this.props.user} />
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+      user: state.user
+  }
+}
+
+export default connect(mapStateToProps)(ScoreBoardContainer)

@@ -17,7 +17,7 @@ export default (state = { questionsAnswered: 0, score: 0 }, action = {}) => {
     case ANSWER_CORRECT:
       return {
         ...state,
-        score: state.score + 1
+        score: state.score + 50
       };
     default:
       return state;
