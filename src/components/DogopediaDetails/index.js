@@ -3,13 +3,12 @@ import { Link } from "react-router-dom";
 import "./DogopediaDetails.css";
 
 export default function DogopediaDetails(props) {
+  // quick function to capitalize first letter of string
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
   const wikiInfo = props.wikiInfo;
-  //   console.log("props in DogopediaDetails:", wikiInfo);
-  //   console.log("all props: ", props);
 
   const images = props.images;
   const dogName = capitalizeFirstLetter(props.match.params.dogType);
@@ -24,7 +23,7 @@ export default function DogopediaDetails(props) {
         {images &&
           images.map(url => (
             <div className="dogImageDiv" key={url}>
-              <img key={url} src={url} alt="Dog" />
+              <img class="Dogopedia" key={url} src={url} alt="Dog" />
             </div>
           ))}
         {!images && "Loading..."}
