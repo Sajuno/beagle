@@ -2,7 +2,7 @@ import { SET_USERNAME } from "../actions/user/setUserName";
 import { ANSWER_GIVEN } from "../actions/user/setUserScore";
 import { ANSWER_CORRECT } from "../actions/user/setUserScore";
 
-export default (state = { gamesPlayed: 0, score: 0 }, action = {}) => {
+export default (state = { questionsAnswered: 0, score: 0 }, action = {}) => {
   switch (action.type) {
     case SET_USERNAME:
       return {
@@ -12,7 +12,7 @@ export default (state = { gamesPlayed: 0, score: 0 }, action = {}) => {
     case ANSWER_GIVEN:
       return {
         ...state,
-        gamesPlayed: state.gamesPlayed + 1
+        questionsAnswered: state.questionsAnswered + 1
       };
     case ANSWER_CORRECT:
       return {
