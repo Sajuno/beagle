@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import request from 'superagent'
 import {renderButtons} from './renderButtons'
 import {getRandomBreed} from './getRandomBreed'
-import './index.css'
 import {addUsedBreed} from '../../../actions/gameone/addUsedBreed'
+import {setUserScore} from '../../../actions/user/setUserScore'
 import {connect} from 'react-redux'
 
 class GameContent extends Component {
@@ -11,30 +11,14 @@ class GameContent extends Component {
 
     componentDidMount() {
         this.initQuestion()
-        window.addEventListener('keyup', this.handleKeyUp)
     }
-
-    handleKeyUp(event) {
-        switch(event.key) {
-            case 'a':
-                document.getElementById('A').click()
-                break
-            case 's':
-                document.getElementById('S').click()
-                break
-            case 'd':
-                document.getElementById('D').click()
-                break
-
-            default:
-                break
-        }
-      }
 
     checkAnswer = (answer) => {
         if(answer === this.state.breed) {
+            this.props.setUserScore(true)
             alert("You are correct!")
         } else {
+            this.props.setUserScore(false)
             alert(`You are wrong, the right answer was ${this.state.breed}`)
         }
     }
@@ -70,10 +54,8 @@ class GameContent extends Component {
         if(!this.state.image) return 'loading...'
         return (
             <>
-                <img class="GameOne" src={this.state.image} alt={this.props.breed}/>
-                    <div class="GameOneButtons">
-                    {renderButtons(this.state.wrong[0], this.state.wrong[1], this.state.breed, this.handleClick)}
-                    </div>
+                <img src={this.state.image} alt={this.props.breed}/>
+                {renderButtons(this.state.wrong[0], this.state.wrong[1], this.state.breed, this.handleClick)}
             </>
         )
     }
@@ -85,4 +67,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { addUsedBreed })(GameContent)
+export default connect(mapStateToProps, { addUsedBreed, setUserScore })(GameContent)
