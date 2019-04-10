@@ -6,14 +6,14 @@ import { Route } from "react-router-dom";
 import Dogopedia from "./components/DogopediaContainer";
 import GameOne from "./components/GameOne";
 import DogopediaDetailsContainer from "./components/DogopediaDetailsContainer";
-import LandingPage from "./components/LandingPage";
+import LandingPageContainer from "./components/LandingPageContainer";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <main>
-          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/" component={LandingPageContainer} />
           <Route exact path="/game-one" component={GameOne} />
           <Route exact path="/dogopedia" component={Dogopedia} />
           <Route
