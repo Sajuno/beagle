@@ -2,6 +2,7 @@
 
 import React, { Component } from "react";
 import "./App.css";
+import './Fonts.css';
 import { Route } from "react-router-dom";
 import Dogopedia from "./components/DogopediaContainer";
 import GameOne from "./components/GameOne";

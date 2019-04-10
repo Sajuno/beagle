@@ -5,11 +5,13 @@ import {getRandomBreed} from './getRandomBreed'
 import {addUsedBreed} from '../../../actions/gameone/addUsedBreed'
 import {setUserScore} from '../../../actions/user/setUserScore'
 import {connect} from 'react-redux'
+import './index.css'
 
 class GameContent extends Component {
     state = { }
 
     componentDidMount() {
+        window.addEventListener('keyup', this.handleKeyUp)
         this.initQuestion()
     }
 
@@ -22,6 +24,24 @@ class GameContent extends Component {
             alert(`You are wrong, the right answer was ${this.state.breed}`)
         }
     }
+
+    handleKeyUp(event) {		
+        switch(event.key) {		
+            case 'a':		
+                document.getElementById('A').click()		
+                break		
+            case 's':		
+                document.getElementById('S').click()		
+                break		
+            case 'd':		
+                document.getElementById('D').click()		
+                break		
+
+             default:		
+                break		
+        }		
+      }		
+
 
     getWrongBreed = (correctBreed) => {
         let wrongBreed = getRandomBreed(this.props.breeds)
@@ -54,8 +74,10 @@ class GameContent extends Component {
         if(!this.state.image) return 'loading...'
         return (
             <>
-                <img src={this.state.image} alt={this.props.breed}/>
-                {renderButtons(this.state.wrong[0], this.state.wrong[1], this.state.breed, this.handleClick)}
+                <img class="GameOne" src={this.state.image} alt={this.props.breed}/>
+                    <div class="GameOneButtons">
+                        {renderButtons(this.state.wrong[0], this.state.wrong[1], this.state.breed, this.handleClick)}
+                    </div>
             </>
         )
     }
