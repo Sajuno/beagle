@@ -1,9 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./DogopediaMain.css";
+import ReturnButton from '../ReturnButton'
 
 export default function DogopediaMain(props) {
   return (
+    <> 
+    <ReturnButton toPath={'../'} pageName={'Landing page'}/>
+    <ReturnButton toPath={'../game-one'} pageName={'Game One'}/>
     <div className="DogopediaMainDiv">
       <h1>
         Dogopedia
@@ -19,6 +23,6 @@ export default function DogopediaMain(props) {
           ))}
         </ul>
       </div>
-    </div>
+    </div> </>
   );
 }
