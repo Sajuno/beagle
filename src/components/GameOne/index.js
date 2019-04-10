@@ -15,11 +15,13 @@ class GameOne extends Component {
     render() {
         if(!this.props.dogsInUse[0]) return 'loading...'
         return (
+            <> 
+            <ReturnButton toPath={'../'} pageName={'Landing page'}/>
+            <ReturnButton toPath={'../dogopedia'} pageName={'Dogopedia'}/>
             <div class="GameOne">
-                <ReturnButton toPath={'../'} pageName={'Home'}/>
                 <GameContent breedsInUse={this.props.dogsInUse} breeds={this.props.gameOneDogs} />
                 <ScoreboardContainer />
-            </div> 
+            </div> </>
         )
     }
 }
