@@ -1,5 +1,13 @@
 import { combineReducers } from "redux";
-import reducer from "./reducer";
+import user from "./user";
 import gameOneDogs from './gameOneDogs'
+import usedBreeds from './usedBreeds'
+import dogsInUse from './dogsInUse'
 
-export default combineReducers({ reducer, gameOneDogs });
+export default combineReducers({ 
+    user, 
+    gameOneDogs, 
+    usedBreeds, 
+    dogsInUse 
+});
+

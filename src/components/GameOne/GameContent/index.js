@@ -3,8 +3,10 @@ import request from 'superagent'
 import {renderButtons} from './renderButtons'
 import {getRandomBreed} from './getRandomBreed'
 import './index.css'
+import {addUsedBreed} from '../../../actions/gameone/addUsedBreed'
+import {connect} from 'react-redux'
 
-export default class GameContent extends Component {
+class GameContent extends Component {
     state = { }
 
     componentDidMount() {
@@ -29,19 +31,37 @@ export default class GameContent extends Component {
         }
       }
 
+    checkAnswer = (answer) => {
+        if(answer === this.state.breed) {
+            alert("You are correct!")
+        } else {
+            alert(`You are wrong, the right answer was ${this.state.breed}`)
+        }
+    }
+
+    getWrongBreed = (correctBreed) => {
+        let wrongBreed = getRandomBreed(this.props.breeds)
+        while(wrongBreed === correctBreed) {
+            wrongBreed = getRandomBreed(this.props.breeds)
+        }
+        return wrongBreed
+    }
+
     handleClick = (evt) => {
-        alert(evt.target.value)
+        this.checkAnswer(evt.target.value)
         this.initQuestion()
     }
 
     initQuestion = () => {
-        const breed = getRandomBreed(this.props.breeds)
+        const breed = getRandomBreed(this.props.breedsInUse)
+        this.props.addUsedBreed(breed)
         request(`https://dog.ceo/api/breed/${breed}/images/random/1`)
-            .then(res => this.setState({image: res.body.message[0], 
+            .then(res => this.setState({
+                image: res.body.message[0], 
                 breed, 
                 wrong: [
-                    getRandomBreed(this.props.breeds), 
-                    getRandomBreed(this.props.breeds)
+                    this.getWrongBreed(breed), 
+                    this.getWrongBreed(breed)
                 ]
             }))   
     }
@@ -58,3 +78,11 @@ export default class GameContent extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        usedBreeds: state.usedBreeds
+    }
+}
+
+export default connect(mapStateToProps, { addUsedBreed })(GameContent)
