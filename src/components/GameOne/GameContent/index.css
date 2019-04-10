@@ -1,26 +1,27 @@
 div.GameOne {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
     align-items: center;
+    margin-top: 5%;
     background-color: white;
 }
 
 div.GameOneButtons {
     flex: 1;
-    flex-direction: column;
     background-color: white;
 }
 
 img.GameOne {
-    max-height: 60%;
+    max-height: 60vh;
     border-radius: 5px;
     flex: 1;
+    align-items: baseline;
     justify-content: center;
 }
 
 p.letter {
     color: white;
+    font-family: 'Roboto Condensed', sans-serif;
     text-align: left;
     font-size: 1rem;
     font-weight: 600;
@@ -34,6 +35,8 @@ button.GameOne {
      orange 25%, chocolate 25% 100%);
 
     font-size: 1.2rem;
+    text-transform: capitalize;
+    font-family: 'Roboto Condensed', sans-serif;
     border: 0;
     border-radius: 1rem;
     line-height: 0rem;
@@ -43,6 +46,5 @@ button.GameOne {
     height: 3rem;
     width: 12rem;
 
-    /* padding-left: 3rem; */
     margin: 1rem;
 }
