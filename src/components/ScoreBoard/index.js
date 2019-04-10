@@ -5,11 +5,15 @@ export default function ScoreBoard(props) {
     <div className="ScoreboardMainDiv">
       <h1>Scoreboard</h1>
       <div className="ScoreboardDiv">
-        Your name: {props.userData.name}
+        <div className="ScoreBoardNameFieldDiv">Name:</div>
+        <div className="ScoreBoardNameDiv"> {props.user.name}</div>
         <br />
+        <div className="ScoreBoardScoreFieldDiv">Score:</div>
         <br />
-        Your score {props.userData.correct} of {props.userData.questionsasked}{" "}
-        correct!
+        <div className="ScoreBoardScoreDiv"> {props.user.score}</div>
+        <br />
+        <div className="ScoreBoardPercentageDiv" />
+        Here' we'll show a cool percentage counter
       </div>
     </div>
   );
