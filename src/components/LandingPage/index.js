@@ -20,13 +20,19 @@ export default function LandingPage(props) {
         </div>
         <div className="flexBoxRight">
           <div className="gameOneMainDiv">
-            This is where the invitation to play Game 1 will be.{" "}
+            <Link to="/game-one">
+              Game 1.{" "}
+            </Link>
           </div>
           <div className="gameTwoMainDiv">
-            This is where the invitation to play Game 2 will be.{" "}
+            <Link to="/game-two">
+              Game 2.{" "}
+            </Link>
           </div>
           <div className="gameThreeMainDiv">
-            This is where the invitation to play Game 3 will be.
+            <Link to="/game-two">
+              Game 3.
+            </Link>
           </div>
         </div>
       </div>
