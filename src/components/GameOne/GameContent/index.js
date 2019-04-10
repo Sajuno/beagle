@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 import request from 'superagent'
 import {renderButtons} from './renderButtons'
 import {getRandomBreed} from './getRandomBreed'
+import {addUsedBreed} from '../../../actions/gameone/addUsedBreed'
+import {connect} from 'react-redux'
 
-export default class GameContent extends Component {
+class GameContent extends Component {
     state = { }
 
     componentDidMount() {
@@ -33,6 +35,7 @@ export default class GameContent extends Component {
 
     initQuestion = () => {
         const breed = getRandomBreed(this.props.breeds)
+        this.props.addUsedBreed(breed)
         request(`https://dog.ceo/api/breed/${breed}/images/random/1`)
             .then(res => this.setState({
                 image: res.body.message[0], 
@@ -54,3 +57,11 @@ export default class GameContent extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        usedBreeds: state.usedBreeds
+    }
+}
+
+export default connect(mapStateToProps, { addUsedBreed })(GameContent)
