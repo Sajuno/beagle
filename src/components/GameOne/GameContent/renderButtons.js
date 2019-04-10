@@ -2,13 +2,22 @@ import {shuffle} from '../shuffle'
 import React from 'react'
 
 export function renderButtons(wrongOne, wrongTwo, correct, handleClick) {
-    const buttons = shuffle([correct, wrongOne, wrongTwo])
+    const answers = shuffle([correct, wrongOne, wrongTwo])
+    const keyMap = ['A','S','D']
 
+    const answersWithLetters = answers.map(answer => ({ text: answer, letter: keyMap }))
     return (
-        buttons.map(button => 
-            button === correct 
-                ? <button value={`Good job! It was a ${button}`} onClick={handleClick}>{button}</button> 
-                : <button value={`Sorry, it was not a ${button}`} onClick={handleClick}>{button}</button>
+        answersWithLetters.map(({ text, letter }) => 
+            <button
+                value={
+                    text === correct
+                        ? text
+                        : text
+                }
+                onClick={handleClick}
+            >
+                {letter}: {text}
+            </button> 
         )
     )
 }

@@ -13,30 +13,3 @@ button {
     padding-left: 3rem;
     margin: 1rem;
 }
-
-button:nth-child(2) {
-    color: white;
-    background-color: black;
-}
-
-button:nth-child(2):before {
-    content: "A: ";
-}
-
-button:nth-child(3) {
-    color: white;
-    background-color: blue;
-}
-
-button:nth-child(3):before {
-    content: "S: ";
-}
-
-button:nth-child(4) {
-    color: white;
-    background-color: red;
-}
-
-button:nth-child(4):before {
-    content: "D: ";
-}
