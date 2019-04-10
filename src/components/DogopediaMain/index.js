@@ -13,7 +13,7 @@ export default function DogopediaMain(props) {
       <div className="DogopediaListDiv">
         <ul className="DogopediaListItems">
           {props.dogTypes.map(dogType => (
-            <li key={dogType}>
+            <li class="Dogopedia" key={dogType}>
               <Link to={`/dogopedia/${dogType}`}>{dogType}</Link>
             </li>
           ))}

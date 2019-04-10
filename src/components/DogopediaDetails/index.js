@@ -23,7 +23,7 @@ export default function DogopediaDetails(props) {
         {images &&
           images.map(url => (
             <div className="dogImageDiv" key={url}>
-              <img key={url} src={url} alt="Dog" />
+              <img class="Dogopedia" key={url} src={url} alt="Dog" />
             </div>
           ))}
         {!images && "Loading..."}
