@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import LandingPage from "../LandingPage";
 import { connect } from "react-redux";
-import { setUserName } from "../../actions/setUserName";
+import { setUserName } from "../../actions/user/setUserName";
 
 class LandingPageContainer extends Component {
   state = {};
