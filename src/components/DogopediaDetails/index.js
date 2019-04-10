@@ -8,7 +8,9 @@ export default function DogopediaDetails(props) {
   }
 
   const wikiInfo = props.wikiInfo;
-  console.log("props in DogopediaDetails:", wikiInfo);
+  //   console.log("props in DogopediaDetails:", wikiInfo);
+  //   console.log("all props: ", props);
+
   const images = props.images;
   const dogName = capitalizeFirstLetter(props.match.params.dogType);
   return (

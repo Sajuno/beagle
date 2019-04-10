@@ -3,10 +3,11 @@ import DogopediaDetails from "../DogopediaDetails";
 import request from "superagent";
 
 export default class DogopediaDetailsContainer extends Component {
-  state = { images: null };
+  state = { images: null, wikiInfo: "" };
 
   componentDidMount() {
     const breed = this.props.match.params.dogType;
+
     request
       .get(
         `https://dog.ceo/api/breed/${encodeURIComponent(
@@ -20,12 +21,15 @@ export default class DogopediaDetailsContainer extends Component {
 
     request
       .get(
-        `https://en.wikipedia.org/w/api.php?action=opensearch&origin=*&formatversion=2&${encodeURIComponent(
+        `https://en.wikipedia.org/w/api.php?action=opensearch&origin=*&formatversion=2&search=${encodeURIComponent(
           breed
         )}")`
       )
       .then(response => {
-        this.updateWikiInfo(response.body.message);
+        // console.log(".then is reporting: ", response.body[2][0]);
+        // this.updateWikiInfo(response.body[2][0]);
+        // console.log(".then is reporting: ", response.body);
+        this.updateWikiInfo(response.body[2][0]);
       })
       .catch(console.error);
   }
