@@ -5,7 +5,7 @@ import "./App.css";
 import { Route } from "react-router-dom";
 import Dogopedia from "./components/DogopediaContainer";
 import GameOne from "./components/GameOne";
-import GameTwo from "./components/GameTwo/GameTwoContainer"
+import GameTwo from "./components/GameTwo";
 import DogopediaDetailsContainer from "./components/DogopediaDetailsContainer";
 import LandingPage from "./components/LandingPage";
 
