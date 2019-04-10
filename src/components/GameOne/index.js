@@ -13,7 +13,7 @@ class GameOne extends Component {
     render() {
         if(!this.props.dogsInUse[0]) return 'loading...'
         return (
-            <div>
+            <div class="GameOne">
                 <GameContent breedsInUse={this.props.dogsInUse} breeds={this.props.gameOneDogs}/>
             </div> 
         )
