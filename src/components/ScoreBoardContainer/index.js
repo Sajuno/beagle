@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import ScoreBoard from "../ScoreBoard";
-import {connect} from 'react-redux'
+import { connect } from "react-redux";
 
 class ScoreBoardContainer extends Component {
+
   render() {
     if (!this.props.user) return "Loading...";
     return (
@@ -13,10 +14,10 @@ class ScoreBoardContainer extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-      user: state.user
-  }
-}
+    user: state.user
+  };
+};
 
-export default connect(mapStateToProps)(ScoreBoardContainer)
+export default connect(mapStateToProps)(ScoreBoardContainer);

@@ -14,12 +14,12 @@ import Hint from './Hint/Hint'
 import './index.css'
 
 class GameContent extends Component {
-    state = { }
+  state = {};
 
-    componentDidMount() {
-        window.addEventListener('keyup', this.handleKeyUp)
-        this.initQuestion()
-    }
+  componentDidMount() {
+    window.addEventListener("keyup", this.handleKeyUp);
+    this.initQuestion();
+  }
 
     checkAnswer = (answer) => {
         if(answer === this.state.breed) {
@@ -36,37 +36,39 @@ class GameContent extends Component {
             this.props.resetCorrectGuesses()
             alert(`You are wrong, the right answer was ${this.state.breed}`)
         }
+
     }
+  };
 
-    handleKeyUp(event) {		
-        switch(event.key) {		
-            case 'a':		
-                document.getElementById('A').click()		
-                break		
-            case 's':		
-                document.getElementById('S').click()		
-                break		
-            case 'd':		
-                document.getElementById('D').click()		
-                break		
-
-             default:		
-                break		
-        }		
-      }		
-
-    getWrongBreed = (correctBreed) => {
-        let wrongBreed = getRandomBreed(this.props.breeds)
-        while(wrongBreed === correctBreed) {
-            wrongBreed = getRandomBreed(this.props.breeds)
-        }
-        return wrongBreed
+  handleKeyUp(event) {
+    switch (event.key) {
+      case "a":
+        document.getElementById("A").click();
+        break;
+      case "s":
+        document.getElementById("S").click();
+        break;
+      case "d":
+        document.getElementById("D").click();
+        break;
+      default:
+        break;
     }
+  }
 
-    handleClick = (evt) => {
-        this.checkAnswer(evt.target.value)
-        this.initQuestion()
+  getWrongBreed = correctBreed => {
+    let wrongBreed = getRandomBreed(this.props.breeds);
+    while (wrongBreed === correctBreed) {
+      wrongBreed = getRandomBreed(this.props.breeds);
     }
+    return wrongBreed;
+  };
+
+
+  handleClick = evt => {
+    this.checkAnswer(evt.target.value);
+    this.initQuestion();
+  };
 
     initQuestion = () => {
         if(this.props.showHint) this.props.setHintState()
@@ -117,3 +119,4 @@ export default connect(mapStateToProps, {
     resetCorrectGuesses,
     setHintState 
 })(GameContent)
+
