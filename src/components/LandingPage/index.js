@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "./LandingPage.css";
 import ManyDogs from "../../pictures/many-dogs.jpg";
 import DogopediaPicture from "../../pictures/dogopedia-logo.png";
-import ScoreboardContainer from '../ScoreBoardContainer'
 
 export default function LandingPage(props) {
   return (
@@ -39,7 +38,6 @@ export default function LandingPage(props) {
         </div>
       </div>
       <footer class="footer">&copy; 2019 Beagl &#9825; Codaisseur</footer>
-      <ScoreboardContainer />
     </div>
   );
 }

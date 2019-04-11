@@ -9,11 +9,18 @@ import { resetCorrectGuesses } from "../../../actions/user/resetGuesses";
 import { setDogsInUse } from "../../../actions/gameone/setDogsInUse";
 import { selectRandomItems } from "../selectRandomItems";
 import { setHintState } from "../../../actions/gameone/setHintState";
+import { changeGame } from "../../../actions/gamethree/changeGame";
 import { connect } from "react-redux";
 import Hint from "./Hint/Hint";
 import "./index.css";
 
+
 class GameContent extends Component {
+  constructor(props){
+    super(props);
+    this.handleKeyUp = this.handleKeyUp.bind(this);
+  }
+
   state = {};
 
   componentDidMount() {
@@ -30,7 +37,7 @@ class GameContent extends Component {
         this.props.user.questionsAnswered + 1
       );
       this.props.incrementCorrectGuesses();
-      if (this.props.user.correctGuessesInARow === 5) {
+      if (this.props.user.correctGuessesInARow !== 0 && this.props.user.correctGuessesInARow % 5 === 0) {
         this.props.setDogsInUse(selectRandomItems(3, this.props.breeds));
         this.props.resetCorrectGuesses();
       }
@@ -44,20 +51,20 @@ class GameContent extends Component {
       this.props.resetCorrectGuesses();
       alert(`You are wrong, the right answer was ${this.state.breed}`);
     }
+  this.props.changeGame()
   };
 
   handleKeyUp(event) {
     switch (event.key) {
-      case "a":
+      case this.props.user.keyMap[0]:
         document.getElementById("A").click();
         break;
-      case "s":
+      case this.props.user.keyMap[1]:
         document.getElementById("S").click();
         break;
-      case "d":
+      case this.props.user.keyMap[2]:
         document.getElementById("D").click();
         break;
-
       default:
         break;
     }
@@ -90,6 +97,7 @@ class GameContent extends Component {
 
   render() {
     if (!this.state.image) return "loading...";
+    console.log('this.props test:', this.props)
     return (
       <>
         <img
@@ -111,13 +119,15 @@ class GameContent extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    usedBreeds: state.usedBreeds,
-    user: state.user,
-    showHint: state.showHint
-  };
-};
+
+const mapStateToProps = (state) => {
+    return {
+        usedBreeds: state.usedBreeds,
+        user: state.user,
+        showHint: state.showHint,
+        gameThreeState: state.gameThreeState,
+    }
+}
 
 export default connect(
   mapStateToProps,
@@ -127,6 +137,7 @@ export default connect(
     incrementCorrectGuesses,
     setDogsInUse,
     resetCorrectGuesses,
-    setHintState
-  }
-)(GameContent);
+    setHintState,
+    changeGame,
+})(GameContent)
+

@@ -16,9 +16,8 @@ class GameOne extends Component {
         if(!this.props.dogsInUse[0]) return 'loading...'
         return (
             <> 
-                <ReturnButton toPath={'../'} pageName={'Landing page'}/>
+                <ReturnButton toPath={'../home'} pageName={'Home'}/>
                 <ReturnButton toPath={'../dogopedia'} pageName={'Dogopedia'}/>
-                <ReturnButton toPath={'../profile'} pageName={'Profile'}/>
                 <div class="GameOne">
                     <GameContent breedsInUse={this.props.dogsInUse} breeds={this.props.gameOneDogs} />
                 </div>

@@ -3,6 +3,7 @@ import avatar from "./avatar-small.png";
 import { connect } from "react-redux";
 import { setUserName } from "../../actions/user/setUserName";
 
+
 export function Profile(props) {
   let percentageCorrect;
   let userName = "John Doe";
@@ -14,7 +15,7 @@ export function Profile(props) {
   } else {
     percentageCorrect = props.user.averageCorrect;
   }
-
+  
   // calculate user's rank
   let userRank = "Newbie";
   const ranks = [

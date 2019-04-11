@@ -6,7 +6,7 @@ import ReturnButton from '../ReturnButton'
 export default function DogopediaMain(props) {
   return (
     <> 
-    <ReturnButton toPath={'../'} pageName={'Landing page'}/>
+    <ReturnButton toPath={'../home'} pageName={'Home'}/>
     <ReturnButton toPath={'../game-one'} pageName={'Game One'}/>
     <div className="DogopediaMainDiv">
       <img alt="wiki" className="logo" src="https://upload.wikimedia.org/wikipedia/commons/0/07/Wikipedia_logo_%28svg%29.svg" />
