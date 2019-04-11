@@ -17,9 +17,9 @@ export function renderButtons(wrongOne, wrongTwo, correct, handleClick) {
                  }
                  onClick={handleClick}
                  id={letter}
-                 class="GameOne"
+                 className="GameOne"
              >
-                 <p class='letter'>{letter}</p> {text}
+                 <p className='letter'>{letter}</p> {text}
              </button>
         )
     )
