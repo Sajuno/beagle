@@ -2,17 +2,37 @@ import React, { Component } from 'react'
 import request from 'superagent'
 import {getRandomBreed} from '../../GameOne/GameContent/getRandomBreed'
 import { renderImages } from './renderImages'
-import { shuffle } from '../../GameOne/shuffle'
+import { setUserScore } from '../../../actions/user/setUserScore'
+import { unhighlight } from '../../../actions/user/unhighlight'
+import './index.css';
+import { connect } from 'react-redux'
 
-export default class GameTwoContent extends Component {
+class GameTwoContent extends Component {
     state = { }
 
     componentDidMount() {
         this.setupGameTwo()
     }
 
-    handleClick = (evt) => {
-        alert(evt.target.value)
+    checkAnswer = (answer, correctBreed) => {
+        if(answer) {
+            this.props.setUserScore(true)
+            // this.props.incrementCorrectGuesses()
+            // if(this.props.user.correctGuessesInARow === 5) {
+            //     this.props.setDogsInUse(selectRandomItems(3, this.props.breeds))
+            //     this.props.resetCorrectGuesses()
+            
+            //alert("You are correct!")
+        }
+        else {
+            this.props.setUserScore(false)
+            // this.props.resetCorrectGuesses()
+        }
+    }
+
+    handleClick = (answer, correctBreed) => {
+        console.log("handleclick: ",answer, correctBreed)
+        this.checkAnswer(answer, correctBreed)
         this.setupGameTwo()
     }
 
@@ -43,18 +63,52 @@ export default class GameTwoContent extends Component {
         return wrongBreed
     }
 
-
+    alertWrong () {
+        console.log('alertWrong test!')
+        setTimeout(
+            () => {
+                window.requestAnimationFrame(() => {
+                    alert('Wrong!')
+                    this.props.unhighlight()
+                })
+            },
+            0
+        )
+    }
 
     render() {
+        console.log('highlightCorrect test:', this.props.highlightCorrect)
+        if (this.props.highlightCorrect) {
+            this.alertWrong()
+        }
+
         if(!this.state.correctImage) return 'loading...'
         return (
-            <>
+            <div>
                 <p>{this.state.correctBreed}</p>
-                {/* {shuffle([this.state.correctImage,this.state.wrongImage1,this.state.wrongImage2]).map(image => {
-                    return <img src={image} alt=""/>
-                })} */}
-                {renderImages(this.state.wrongImage1, this.state.wrongImage2, this.state.correctImage, this.handleClick)}
-            </>
+
+                {
+                    renderImages(
+                        this.state.wrongImage1,
+                        this.state.wrongImage2,
+                        this.state.correctImage,
+                        this.handleClick,
+                        this.state.correctBreed,
+                        this.props.highlightCorrect
+                    )
+                }
+            </div>
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        highlightCorrect: state.user.highlightCorrect,
+    }
+}
+
+export default connect(mapStateToProps, { 
+    setUserScore,
+    unhighlight
+})(GameTwoContent)
