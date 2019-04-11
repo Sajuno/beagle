@@ -1,6 +1,5 @@
 import React from "react";
 import avatar from "./avatar-small.png";
-import { ProgressBar } from "react-bootstrap";
 
 export default function Profile(props) {
   let percentageCorrect;
@@ -20,8 +19,16 @@ export default function Profile(props) {
     "Newbie",
     "Apprentice",
     "Dog lover",
+    "Puppyteer",
+    "Dog walker",
+    "Tree Barker",
     "Enthusiast",
+    "Hound Freak",
+    "Dog Professional",
+    "Ruler of the Flock",
+    "Specialist",
     "Dog Whisperer",
+    "Dogopedia Expert",
     "Wizard"
   ];
 
@@ -30,7 +37,15 @@ export default function Profile(props) {
   else if (props.user.score < 400) userRank = ranks[2];
   else if (props.user.score < 600) userRank = ranks[3];
   else if (props.user.score < 800) userRank = ranks[4];
-  else if (props.user.score >= 800) userRank = ranks[5];
+  else if (props.user.score < 900) userRank = ranks[5];
+  else if (props.user.score < 1000) userRank = ranks[6];
+  else if (props.user.score < 1100) userRank = ranks[7];
+  else if (props.user.score < 1200) userRank = ranks[8];
+  else if (props.user.score < 1300) userRank = ranks[9];
+  else if (props.user.score < 1400) userRank = ranks[10];
+  else if (props.user.score < 1600) userRank = ranks[11];
+  else if (props.user.score < 1800) userRank = ranks[12];
+  else if (props.user.score >= 2000) userRank = ranks[13];
 
   return (
     <div className="ProfileMainDiv">
