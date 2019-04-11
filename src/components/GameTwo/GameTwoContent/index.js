@@ -6,6 +6,14 @@ import { setUserScore } from '../../../actions/user/setUserScore'
 import { unhighlight } from '../../../actions/user/unhighlight'
 import './index.css';
 import { connect } from 'react-redux'
+import {addUsedBreed} from '../../../actions/gameone/addUsedBreed'
+import {incrementCorrectGuesses} from '../../../actions/user/incrementGuesses'
+import {resetCorrectGuesses} from '../../../actions/user/resetGuesses'
+import {setDogsInUse} from '../../../actions/gameone/setDogsInUse'
+import {selectRandomItems} from '../../GameOne/selectRandomItems'
+import {setHintState} from '../../../actions/gameone/setHintState'
+// import Hint from '../../GameOne/GameContent/Hint/Hint'
+
 
 class GameTwoContent extends Component {
     state = { }
@@ -17,26 +25,27 @@ class GameTwoContent extends Component {
     checkAnswer = (answer, correctBreed) => {
         if(answer) {
             this.props.setUserScore(true)
-            // this.props.incrementCorrectGuesses()
-            // if(this.props.user.correctGuessesInARow === 5) {
-            //     this.props.setDogsInUse(selectRandomItems(3, this.props.breeds))
-            //     this.props.resetCorrectGuesses()
+            this.props.incrementCorrectGuesses()
+            if(this.props.user.correctGuessesInARow === 5) {
+                this.props.setDogsInUse(selectRandomItems(3, this.props.breeds))
+                this.props.resetCorrectGuesses()
             
             alert("You are correct!")
+            }
         }
         else {
             this.props.setUserScore(false)
-            // this.props.resetCorrectGuesses()
+            this.props.resetCorrectGuesses()
         }
     }
 
     handleClick = (answer, correctBreed) => {
-        console.log("handleclick: ",answer, correctBreed)
         this.checkAnswer(answer, correctBreed)
         this.setupGameTwo()
     }
 
     setupGameTwo = () => {
+        if(this.props.showHint) this.props.setHintState()
         const correctBreed = getRandomBreed(this.props.breeds)
         const wrongBreed1 = this.getWrongBreed(correctBreed)
         const wrongBreed2 = this.getWrongBreed(correctBreed)
@@ -84,7 +93,6 @@ class GameTwoContent extends Component {
         return (
             <div>
                 <h1>{this.state.correctBreed}</h1>
-
                 {
                     renderImages(
                         this.state.wrongImage1,
@@ -95,6 +103,10 @@ class GameTwoContent extends Component {
                         this.props.highlightCorrect
                     )
                 }
+                <br/>
+                {/* <Hint breed={this.state.correctBreed} /> */}
+                <br/>
+                <h2>Click on the foto matching the Dog's breed</h2>
             </div>
         )
     }
@@ -103,10 +115,19 @@ class GameTwoContent extends Component {
 const mapStateToProps = (state) => {
     return {
         highlightCorrect: state.user.highlightCorrect,
+        usedBreeds: state.usedBreeds,
+        user: state.user,
+        showHint: state.showHint
+
     }
 }
 
 export default connect(mapStateToProps, { 
     setUserScore,
-    unhighlight
+    unhighlight,
+    addUsedBreed, 
+    incrementCorrectGuesses, 
+    setDogsInUse, 
+    resetCorrectGuesses,
+    setHintState 
 })(GameTwoContent)
