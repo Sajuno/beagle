@@ -1,0 +1,25 @@
+.ScoreboardMainDiv {
+    position: fixed;
+    align-self: flex-end;
+    bottom: 0;
+
+    margin-bottom: auto;    
+    color: white;
+    background-color: blue;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 1rem;
+
+    font-size: 1rem;
+    text-transform: capitalize;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.ScoreboardDiv {
+    display: flex;
+    flex-direction: column;
+    display: inline;
+
+    align-self: flex-end;
+}

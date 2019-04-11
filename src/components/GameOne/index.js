@@ -16,12 +16,13 @@ class GameOne extends Component {
         if(!this.props.dogsInUse[0]) return 'loading...'
         return (
             <> 
-            <ReturnButton toPath={'../'} pageName={'Landing page'}/>
-            <ReturnButton toPath={'../dogopedia'} pageName={'Dogopedia'}/>
-            <div class="GameOne">
-                <GameContent breedsInUse={this.props.dogsInUse} breeds={this.props.gameOneDogs} />
-                <ScoreboardContainer />
-            </div> </>
+                <ReturnButton toPath={'../'} pageName={'Landing page'}/>
+                <ReturnButton toPath={'../dogopedia'} pageName={'Dogopedia'}/>
+                <div class="GameOne">
+                    <GameContent breedsInUse={this.props.dogsInUse} breeds={this.props.gameOneDogs} />
+                </div>
+                <ScoreboardContainer /> 
+            </>
         )
     }
 }
