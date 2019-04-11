@@ -5,8 +5,16 @@ import { INCREMENT_CORRECT_GUESSES } from '../actions/user/incrementGuesses'
 import { RESET_CORRECT_GUESSES } from '../actions/user/resetGuesses'
 import { ANSWER_SHOWN } from '../actions/user/unhighlight'
 
-
-export default (state = { questionsAnswered: 0, score: 0, correctGuessesInARow: 0, highlightCorrect: false}, action = {}) => {
+export default (
+  state = {
+    questionsAnswered: 0,
+    questionsAnsweredCorrectly: 0,
+    score: 0,
+    correctGuessesInARow: 0,
+    highlightCorrect: false,
+  },
+  action = {}
+) => {
   switch (action.type) {
     case SET_USERNAME:
       return {
@@ -23,23 +31,24 @@ export default (state = { questionsAnswered: 0, score: 0, correctGuessesInARow: 
       return {
         ...state,
         score: state.score + 50,
-        highlightCorrect: false
+        highlightCorrect: false,
+        questionsAnsweredCorrectly: state.questionsAnsweredCorrectly + 1,
       };
     case INCREMENT_CORRECT_GUESSES:
       return {
         ...state,
         correctGuessesInARow: state.correctGuessesInARow + 1
-      }
-      case RESET_CORRECT_GUESSES:
+      };
+    case RESET_CORRECT_GUESSES:
       return {
         ...state,
         correctGuessesInARow: 0
-      }
+      };
     case ANSWER_SHOWN:
       return {
         ...state,
         highlightCorrect: false
-      }
+      };
     default:
       return state;
   }

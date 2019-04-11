@@ -8,7 +8,9 @@ import {incrementCorrectGuesses} from '../../../actions/user/incrementGuesses'
 import {resetCorrectGuesses} from '../../../actions/user/resetGuesses'
 import {setDogsInUse} from '../../../actions/gameone/setDogsInUse'
 import {selectRandomItems} from '../selectRandomItems'
+import {setHintState} from '../../../actions/gameone/setHintState'
 import {connect} from 'react-redux'
+import Hint from './Hint/Hint'
 import './index.css'
 
 class GameContent extends Component {
@@ -21,6 +23,7 @@ class GameContent extends Component {
 
     checkAnswer = (answer) => {
         if(answer === this.state.breed) {
+            this.props.addUsedBreed(this.state.breed)
             this.props.setUserScore(true)
             this.props.incrementCorrectGuesses()
             if(this.props.user.correctGuessesInARow === 5) {
@@ -52,7 +55,6 @@ class GameContent extends Component {
         }		
       }		
 
-
     getWrongBreed = (correctBreed) => {
         let wrongBreed = getRandomBreed(this.props.breeds)
         while(wrongBreed === correctBreed) {
@@ -67,8 +69,8 @@ class GameContent extends Component {
     }
 
     initQuestion = () => {
+        if(this.props.showHint) this.props.setHintState()
         const breed = getRandomBreed(this.props.breedsInUse)
-        this.props.addUsedBreed(breed)
         request(`https://dog.ceo/api/breed/${breed}/images/random/1`)
             .then(res => this.setState({
                 image: res.body.message[0], 
@@ -84,9 +86,15 @@ class GameContent extends Component {
         if(!this.state.image) return 'loading...'
         return (
             <>
-                <img class="GameOne" src={this.state.image} alt={this.props.breed}/>
-                    <div class="GameOneButtons">
-                        {renderButtons(this.state.wrong[0], this.state.wrong[1], this.state.breed, this.handleClick)}
+                <img className="GameOne" src={this.state.image} alt={this.props.breed}/>
+                    <div className="GameOneButtons">
+                        {renderButtons(
+                            this.state.wrong[0], 
+                            this.state.wrong[1], 
+                            this.state.breed, 
+                            this.handleClick)
+                        }
+                        <Hint breed={this.state.breed} />
                     </div>
             </>
         )
@@ -96,7 +104,8 @@ class GameContent extends Component {
 const mapStateToProps = (state) => {
     return {
         usedBreeds: state.usedBreeds,
-        user: state.user
+        user: state.user,
+        showHint: state.showHint
     }
 }
 
@@ -105,5 +114,6 @@ export default connect(mapStateToProps, {
     setUserScore, 
     incrementCorrectGuesses, 
     setDogsInUse, 
-    resetCorrectGuesses 
+    resetCorrectGuesses,
+    setHintState 
 })(GameContent)
