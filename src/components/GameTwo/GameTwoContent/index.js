@@ -11,9 +11,14 @@ import {incrementCorrectGuesses} from '../../../actions/user/incrementGuesses'
 import {resetCorrectGuesses} from '../../../actions/user/resetGuesses'
 import {setDogsInUse} from '../../../actions/gameone/setDogsInUse'
 import {selectRandomItems} from '../../GameOne/selectRandomItems'
+import Modal from 'react-bootstrap/Modal'
+import ModalHeader from 'react-bootstrap/ModalHeader'
+import ModalBody from 'react-bootstrap/ModalBody'
+import ModalFooter from 'react-bootstrap/ModalFooter'
+import Button from 'react-bootstrap/Button'
 
 class GameTwoContent extends Component {
-    state = { }
+    state = { show: false, answer: true }
 
     componentDidMount() {
         this.setupGameTwo()
@@ -41,15 +46,15 @@ class GameTwoContent extends Component {
               )
             this.props.resetCorrectGuesses()
         }
+        this.handleShow()
     }
 
     handleClick = (answer, correctBreed) => {
+        this.setState({ answer })
         this.checkAnswer(answer, correctBreed)
-        this.setupGameTwo()
     }
 
     setupGameTwo = () => {
-        console.log("setupgame:", this.props.breedsInUse)
         const correctBreed = getRandomBreed(this.props.breedsInUse)
         const wrongBreed1 = this.getWrongBreed(correctBreed)
         const wrongBreed2 = this.getWrongBreed(correctBreed)
@@ -75,22 +80,30 @@ class GameTwoContent extends Component {
         return wrongBreed
     }
 
-    alertWrong () {
-        setTimeout(
-            () => {
-                window.requestAnimationFrame(() => {
-                    alert(`Wrong! The correct image for the ${this.state.correctBreed} is:`)
-                    this.props.unhighlight()
-                })
-            },
-            0
-        )
+    // alertWrong () {
+    //     setTimeout(
+    //         () => {
+    //             window.requestAnimationFrame(() => {
+    //                 alert(`Wrong! The correct image for the ${this.state.correctBreed} is:`)
+    //                 this.props.unhighlight()
+    //             })
+    //         },
+    //         0
+    //     )
+    // }
+    handleClose = () => {
+        this.setState({ show: false })
+        this.setupGameTwo()
+    }
+    
+    handleShow = () => {
+        this.setState({ show: true });
     }
 
     render() {
-        if (this.props.highlightCorrect) {
-            this.alertWrong()
-        }
+        // if (this.props.highlightCorrect) {
+        //     this.alertWrong()
+        // }
 
         if(!this.state.correctImage) return 'loading...'
         return (
@@ -107,6 +120,14 @@ class GameTwoContent extends Component {
                     )
                 }
                 <br/>
+                <Modal show={this.state.show}>
+                    <ModalHeader>You're answer is:</ModalHeader>
+                    <ModalBody>Body</ModalBody>
+                    <ModalFooter>
+                        <Button onClick={this.handleClose}>Next question</Button>
+                    </ModalFooter>
+                </Modal>
+
                 <br/>
                 <h2>Click on the foto matching the Dog's breed</h2>
             </div>
