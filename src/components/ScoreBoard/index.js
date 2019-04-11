@@ -1,5 +1,7 @@
 import React from "react";
-import './index.css'
+import { Progress } from 'react-sweet-progress';
+import "react-sweet-progress/lib/style.css";
+import "./index.css";
 
 export default function ScoreBoard(props) {
   let percentageCorrect;
@@ -16,9 +18,27 @@ export default function ScoreBoard(props) {
       <div className="ScoreboardDiv">
         <div className="ScoreBoardNameDiv"> Name: {props.user.name}</div>
         <div className="ScoreBoardScoreDiv"> Score: {props.user.score}</div>
-        <div className="ScoreBoardPercentageDiv" />
-        You scored {percentageCorrect}% correct. (Here' we'll show a cool
-        percentage counter)
+        <div className="ScoreBoardScoreDiv">
+          Questions: {props.user.questionsAnsweredCorrectly}/
+          {props.user.questionsAnswered}
+        </div>
+        <div className="ScoreBoardPercentageDiv">
+          <Progress percent={percentageCorrect} 
+            theme={{
+              success: {
+                symbol: '🐕',
+                color: 'lightgreen'
+              },
+              active: {
+                symbol: '🐩',
+                color: 'tomato'
+              },
+              default: {
+                symbol: '💩',
+                color: 'crimson'
+              }
+            }} />
+        </div>
       </div>
     </div>
   );

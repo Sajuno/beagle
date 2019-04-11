@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ShowHint from './ShowHint'
 import {connect} from 'react-redux'
 import {setHintState} from '../../../../actions/gameone/setHintState'
+import '../index.css'
 
 class Hint extends Component {
     handleClick = () => {
@@ -14,14 +15,14 @@ class Hint extends Component {
 
   render() {
     return (
-      <div>
-        <button onClick={this.handleClick}>Show hint</button>
+      <>
+        <button className="Hint" onClick={this.handleClick}>?</button>
         {
             this.props.showHint 
             ? <ShowHint hint={this.props.breed} />
             : null
         }
-      </div>
+      </>
     )
   }
 }
