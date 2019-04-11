@@ -1,6 +1,7 @@
 import { SET_USERNAME } from "../actions/user/setUserName";
 import { ANSWER_GIVEN } from "../actions/user/setUserScore";
 import { ANSWER_CORRECT } from "../actions/user/setUserScore";
+import { SET_AVERAGE_CORRECT } from "../actions/user/setUserScore";
 import { INCREMENT_CORRECT_GUESSES } from "../actions/user/incrementGuesses";
 import { RESET_CORRECT_GUESSES } from "../actions/user/resetGuesses";
 
@@ -29,6 +30,11 @@ export default (
         ...state,
         score: state.score + 50,
         questionsAnsweredCorrectly: state.questionsAnsweredCorrectly + 1
+      };
+    case SET_AVERAGE_CORRECT:
+      return {
+        ...state,
+        averageCorrect: action.payload
       };
     case INCREMENT_CORRECT_GUESSES:
       return {
