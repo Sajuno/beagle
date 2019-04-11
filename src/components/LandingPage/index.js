@@ -32,7 +32,7 @@ export default function LandingPage(props) {
             </Link>
           </div>
           <div className="gameThreeMainDiv">
-            <Link to="/game-two">
+            <Link to="/game-three">
               Game 3.
             </Link>
           </div>
