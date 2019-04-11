@@ -14,6 +14,11 @@ import Hint from "./Hint/Hint";
 import "./index.css";
 
 class GameContent extends Component {
+  constructor(props){
+    super(props);
+    this.handleKeyUp = this.handleKeyUp.bind(this);
+  }
+
   state = {};
 
   componentDidMount() {
@@ -48,13 +53,13 @@ class GameContent extends Component {
 
   handleKeyUp(event) {
     switch (event.key) {
-      case "a":
+      case this.props.user.keyMap[0]:
         document.getElementById("A").click();
         break;
-      case "s":
+      case this.props.user.keyMap[1]:
         document.getElementById("S").click();
         break;
-      case "d":
+      case this.props.user.keyMap[2]:
         document.getElementById("D").click();
         break;
 
@@ -90,6 +95,7 @@ class GameContent extends Component {
 
   render() {
     if (!this.state.image) return "loading...";
+    console.log('this.props test:', this.props)
     return (
       <>
         <img
