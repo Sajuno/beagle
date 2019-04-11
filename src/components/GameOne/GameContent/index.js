@@ -52,7 +52,6 @@ class GameContent extends Component {
         }		
       }		
 
-
     getWrongBreed = (correctBreed) => {
         let wrongBreed = getRandomBreed(this.props.breeds)
         while(wrongBreed === correctBreed) {
