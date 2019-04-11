@@ -18,7 +18,7 @@ export default function ScoreBoard(props) {
       <div className="ScoreboardDiv">
         <div className="ScoreBoardNameDiv"> Name: {props.user.name}</div>
         <div className="ScoreBoardScoreDiv"> Score: {props.user.score}</div>
-        <div className="ScoreBoardQuestionsDiv">
+        <div className="ScoreBoardScoreDiv">
           Questions: {props.user.questionsAnsweredCorrectly}/
           {props.user.questionsAnswered}
         </div>
