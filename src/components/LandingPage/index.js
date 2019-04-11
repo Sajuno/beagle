@@ -10,13 +10,14 @@ export default function LandingPage(props) {
       <div className="mainHeaderDiv">Welcome to the BEAGL Dog page.</div>
 
       <div className="bigFlexBox">
-        <div className="flexBoxLeft" />
-        <div className="dogopediaLeft">
-          <Link to="/dogopedia">
-            <img id="ManyDogs" src={ManyDogs} alt="Many dogs" />
-          </Link>
-          <img src={DogopediaPicture} alt="Dogopedia" />
-          <h1>Practice your dog knowledge!</h1>
+        <div className="flexBoxLeft">
+          <div className="dogopediaLeft">
+            <Link to="/dogopedia">
+              <img id="ManyDogs" src={ManyDogs} alt="Many dogs" />
+            </Link>
+            <img src={DogopediaPicture} alt="Dogopedia" />
+            <h1>Practice your dog knowledge!</h1>
+          </div>
         </div>
         <div className="flexBoxRight">
           <div className="gameOneMainDiv">

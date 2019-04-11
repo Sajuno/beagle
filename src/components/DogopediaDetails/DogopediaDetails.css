@@ -74,19 +74,19 @@ img.Dogopedia {
     }
 }
 
-a:link, visited {
+a.dogopedia:link, visited {
     color: black;
 }
 
 /* A link that has been visited */
 
-a:visited {
+a.dogopedia:visited {
     color: black;
 }
 
 /* A link that is hovered on */
 
-a:hover {
+a.dogopedia:hover {
     color: red;
     animation: bluetored 1.0s;
 }
