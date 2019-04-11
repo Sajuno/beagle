@@ -3,6 +3,7 @@ import { getDogs } from '../../actions/gameone/getDogs'
 import { connect } from 'react-redux'
 import GameTwoContent from './GameTwoContent'
 import ScoreboardContainer from '../ScoreBoardContainer'
+import ReturnButton from '../ReturnButton'
 
 
 class GameTwo extends Component {
@@ -14,6 +15,8 @@ class GameTwo extends Component {
         if(!this.props.dogsInUse[0]) return 'loading...'
         return (
             <div>
+                <ReturnButton toPath={'../'} pageName={'Landing page'}/>
+                <ReturnButton toPath={'../dogopedia'} pageName={'Dogopedia'}/>
                 <GameTwoContent breedsInUse={this.props.dogsInUse} breeds={this.props.gameOneDogs} />
                 <ScoreboardContainer /> 
             </div> 
