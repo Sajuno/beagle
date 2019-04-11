@@ -25,7 +25,7 @@ export default function ScoreBoard(props) {
     "Hound Freak",
     "Dog Professional",
     "Ruler of the Flock",
-    "Specialist",
+    "Dog Specialist",
     "Dog Whisperer",
     "Dogopedia Expert",
     "Wizard"
