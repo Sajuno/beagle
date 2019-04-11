@@ -22,7 +22,7 @@ class GameTwoContent extends Component {
             //     this.props.setDogsInUse(selectRandomItems(3, this.props.breeds))
             //     this.props.resetCorrectGuesses()
             
-            //alert("You are correct!")
+            alert("You are correct!")
         }
         else {
             this.props.setUserScore(false)
@@ -68,7 +68,7 @@ class GameTwoContent extends Component {
         setTimeout(
             () => {
                 window.requestAnimationFrame(() => {
-                    alert('Wrong!')
+                    alert(`Wrong! The correct image for the ${this.state.correctBreed} is:`)
                     this.props.unhighlight()
                 })
             },
@@ -85,7 +85,7 @@ class GameTwoContent extends Component {
         if(!this.state.correctImage) return 'loading...'
         return (
             <div>
-                <p>{this.state.correctBreed}</p>
+                <h1>{this.state.correctBreed}</h1>
 
                 {
                     renderImages(
