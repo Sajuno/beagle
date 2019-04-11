@@ -48,3 +48,31 @@ button.GameOne {
 
     margin: 1rem;
 }
+
+button.Hint {
+    color: white;
+    background: burlywood;
+
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    font-family: 'Roboto Condensed', sans-serif;
+    border: 0;
+    border-radius: 1rem;
+    line-height: 0rem;
+    text-align: center;
+
+    height: 3rem;
+    width: 3rem;
+
+    margin: 1rem;
+}
+
+.hintClass {
+    text-align: center;
+    color: burlywood;
+    font-size: 3rem;
+    text-transform: capitalize;
+    font-family: 'Roboto Condensed', sans-serif;
+    padding: 1rem;
+}

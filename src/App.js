@@ -9,7 +9,6 @@ import GameOne from "./components/GameOne";
 import GameTwo from "./components/GameTwo";
 import DogopediaDetailsContainer from "./components/DogopediaDetailsContainer";
 import LandingPageContainer from "./components/LandingPageContainer";
-
 class App extends Component {
   render() {
     return (
