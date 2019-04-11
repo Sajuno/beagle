@@ -10,6 +10,7 @@ import {setDogsInUse} from '../../../actions/gameone/setDogsInUse'
 import {selectRandomItems} from '../selectRandomItems'
 import {setHintState} from '../../../actions/gameone/setHintState'
 import {connect} from 'react-redux'
+import {changeGame} from '../../../actions/gamethree/changeGame'
 import Hint from './Hint/Hint'
 import './index.css'
 
@@ -36,9 +37,9 @@ class GameContent extends Component {
             this.props.resetCorrectGuesses()
             alert(`You are wrong, the right answer was ${this.state.breed}`)
         }
+        this.props.changeGame()
 
-    }
-  
+  };
 
   handleKeyUp(event) {
     switch (event.key) {
@@ -51,7 +52,6 @@ class GameContent extends Component {
       case "d":
         document.getElementById("D").click();
         break;
-
       default:
         break;
     }
@@ -108,7 +108,8 @@ const mapStateToProps = (state) => {
     return {
         usedBreeds: state.usedBreeds,
         user: state.user,
-        showHint: state.showHint
+        showHint: state.showHint,
+        gameThreeState: state.gameThreeState,
     }
 }
 
@@ -118,6 +119,7 @@ export default connect(mapStateToProps, {
     incrementCorrectGuesses, 
     setDogsInUse, 
     resetCorrectGuesses,
-    setHintState 
+    setHintState,
+    changeGame,
 })(GameContent)
 

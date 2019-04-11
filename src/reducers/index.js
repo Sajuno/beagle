@@ -6,6 +6,7 @@ import usedBreeds from './usedBreeds'
 import dogsInUse from './dogsInUse'
 import gameTwoDogs from './gameTwoDogs';
 import showHint from './showHint'
+import gameThreeState from './gameThreeState'
 
 console.log("showHint test:", showHint)
 
@@ -16,5 +17,6 @@ export default combineReducers({
     usedBreeds, 
     dogsInUse,
     showHint,
+    gameThreeState
 });
 
