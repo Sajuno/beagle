@@ -9,6 +9,7 @@ import GameOne from "./components/GameOne";
 import GameTwo from "./components/GameTwo";
 import DogopediaDetailsContainer from "./components/DogopediaDetailsContainer";
 import LandingPageContainer from "./components/LandingPageContainer";
+import Profile from "./components/Profile"
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
           <Route exact path="/game-one" component={GameOne} />
           <Route exact path="/game-two" component={GameTwo}/>
           <Route exact path="/dogopedia" component={Dogopedia} />
+          <Route exact path="/profile" component={Profile} />
           <Route
             path="/dogopedia/:dogType"
             component={DogopediaDetailsContainer}
