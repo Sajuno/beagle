@@ -6,9 +6,9 @@ class ScoreBoardContainer extends Component {
   render() {
     if (!this.props.user) return "Loading...";
     return (
-      <div>
+      <>
         <ScoreBoard user={this.props.user} />
-      </div>
+      </>
     );
   }
 }

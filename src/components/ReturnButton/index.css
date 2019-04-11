@@ -1,0 +1,10 @@
+p.ReturnButton {
+    color: black;
+    display: inline-block;
+    font-size: 1.2rem;
+    text-transform: capitalize;
+    font-family: 'Roboto Condensed', sans-serif;
+
+    padding-top: 2rem;
+    padding-left: 2rem;
+}
