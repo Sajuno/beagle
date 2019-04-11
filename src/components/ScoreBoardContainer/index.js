@@ -3,10 +3,6 @@ import ScoreBoard from "../ScoreBoard";
 import {connect} from 'react-redux'
 
 class ScoreBoardContainer extends Component {
-  componentDidMount() {
-    console.log(this.props.user)
-  }
-
   render() {
     if (!this.props.user) return "Loading...";
     return (
