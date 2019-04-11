@@ -9,6 +9,8 @@ import GameOne from "./components/GameOne";
 import GameTwo from "./components/GameTwo";
 import DogopediaDetailsContainer from "./components/DogopediaDetailsContainer";
 import LandingPageContainer from "./components/LandingPageContainer";
+import GameThree from './components/GameThree'
+
 class App extends Component {
   render() {
     return (
@@ -22,6 +24,7 @@ class App extends Component {
             path="/dogopedia/:dogType"
             component={DogopediaDetailsContainer}
           />
+          <Route exact path = "/game-three" component={GameThree} />
         </main>
       </div>
     );
