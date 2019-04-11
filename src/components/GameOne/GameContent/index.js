@@ -9,9 +9,11 @@ import { resetCorrectGuesses } from "../../../actions/user/resetGuesses";
 import { setDogsInUse } from "../../../actions/gameone/setDogsInUse";
 import { selectRandomItems } from "../selectRandomItems";
 import { setHintState } from "../../../actions/gameone/setHintState";
+import { changeGame } from "../../../actions/gamethree/changeGame";
 import { connect } from "react-redux";
 import Hint from "./Hint/Hint";
 import "./index.css";
+
 
 class GameContent extends Component {
   state = {};
