@@ -1,6 +1,5 @@
 import React from "react";
 import avatar from "./avatar-small.png";
-import { ProgressBar } from "react-bootstrap";
 
 export default function Profile(props) {
   let percentageCorrect;
@@ -13,7 +12,7 @@ export default function Profile(props) {
   } else {
     percentageCorrect = props.user.averageCorrect;
   }
-
+  
   // calculate user's rank
   let userRank = "Newbie";
   const ranks = [
