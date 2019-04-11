@@ -1,5 +1,5 @@
 import React from "react";
-import './index.css'
+import "./index.css";
 
 export default function ScoreBoard(props) {
   let percentageCorrect;
@@ -16,6 +16,10 @@ export default function ScoreBoard(props) {
       <div className="ScoreboardDiv">
         <div className="ScoreBoardNameDiv"> Name: {props.user.name}</div>
         <div className="ScoreBoardScoreDiv"> Score: {props.user.score}</div>
+        <div className="ScoreBoardQuestionsDiv">
+          Questions: {props.user.questionsAnsweredCorrectly}/
+          {props.user.questionsAnswered}
+        </div>
         <div className="ScoreBoardPercentageDiv" />
         You scored {percentageCorrect}% correct. (Here' we'll show a cool
         percentage counter)

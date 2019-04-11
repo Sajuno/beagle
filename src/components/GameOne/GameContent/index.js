@@ -26,8 +26,8 @@ class GameContent extends Component {
       this.props.addUsedBreed(this.state.breed);
       this.props.setUserScore(
         true,
-        this.props.user.questionsAnsweredCorrectly,
-        this.props.user.questionsAnswered
+        this.props.user.questionsAnsweredCorrectly + 1,
+        this.props.user.questionsAnswered + 1
       );
       this.props.incrementCorrectGuesses();
       if (this.props.user.correctGuessesInARow === 5) {
@@ -39,7 +39,7 @@ class GameContent extends Component {
       this.props.setUserScore(
         false,
         this.props.user.questionsAnsweredCorrectly,
-        this.props.user.questionsAnswered
+        this.props.user.questionsAnswered + 1
       );
       this.props.resetCorrectGuesses();
       alert(`You are wrong, the right answer was ${this.state.breed}`);
