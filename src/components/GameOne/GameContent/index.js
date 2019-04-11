@@ -38,7 +38,7 @@ class GameContent extends Component {
         }
 
     }
-  };
+  
 
   handleKeyUp(event) {
     switch (event.key) {
@@ -51,6 +51,7 @@ class GameContent extends Component {
       case "d":
         document.getElementById("D").click();
         break;
+
       default:
         break;
     }
