@@ -32,7 +32,7 @@ class GameContent extends Component {
         this.props.user.questionsAnswered + 1
       );
       this.props.incrementCorrectGuesses();
-      if (this.props.user.correctGuessesInARow === 5) {
+      if (this.props.user.correctGuessesInARow !== 0 && this.props.user.correctGuessesInARow % 5 === 0) {
         this.props.setDogsInUse(selectRandomItems(3, this.props.breeds));
         this.props.resetCorrectGuesses();
       }
