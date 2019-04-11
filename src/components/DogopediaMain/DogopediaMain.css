@@ -3,11 +3,15 @@ img.Dogopedia {
     max-height: 100%;
 }
 
+img.logo {
+    max-width: 6rem;
+    display: inline-block;
+}
+
 li.Dogopedia {
     display: inline-block;
     padding: 20px 10px 10px 10px;
     border-radius: 5px;
-    border: 2px solid black;
     margin: 10px 10px 20px 10px;
     text-transform: capitalize;
 }
@@ -46,4 +50,16 @@ ul.DogopediaListItems {
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.dogopedia-h1 {
+    font-family: 'Roboto Condensed', sans-serif;
+    display: inline-block;
+    font-size: 5rem;
+    padding: 2rem 0 0 2rem;
+}
+
+p.wiki {
+    padding: 2rem 0 5rem 0;
+    margin-left: 5rem;
 }

@@ -83,19 +83,3 @@ a.dogopedia:link, visited {
 a.dogopedia:visited {
     color: black;
 }
-
-/* A link that is hovered on */
-
-a.dogopedia:hover {
-    color: red;
-    animation: bluetored 1.0s;
-}
-
-@keyframes bluetored {
-    from {
-        color: blue;
-    }
-    to {
-        color: red;
-    }
-}

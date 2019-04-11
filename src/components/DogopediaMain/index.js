@@ -9,11 +9,9 @@ export default function DogopediaMain(props) {
     <ReturnButton toPath={'../'} pageName={'Landing page'}/>
     <ReturnButton toPath={'../game-one'} pageName={'Game One'}/>
     <div className="DogopediaMainDiv">
-      <h1>
-        Dogopedia
-        <br />
-        <br />
-      </h1>
+      <img alt="wiki" className="logo" src="https://upload.wikimedia.org/wikipedia/commons/0/07/Wikipedia_logo_%28svg%29.svg" />
+      <h1 className="dogopedia-h1"> Dogopedia </h1>
+      <p className="wiki">the free encyclopedia that nobody can edit.</p>
       <div className="DogopediaListDiv">
         <ul className="DogopediaListItems">
           {props.dogTypes.map(dogType => (

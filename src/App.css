@@ -10,3 +10,29 @@ button:focus {
 main {
     height: 100%;
 }
+
+a:link {
+    color: crimson;
+    text-decoration: none;
+}
+
+a:visited {
+    color: tomato;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+    animation: bluetored 1.0s;
+}
+
+a:active {
+    text-decoration: none;
+}
+
+@keyframes bluetored {
+    0% { color: crimson; }
+    20% { color: red; }
+    40% { color: orange; }
+    100% { color: crimson; }
+}
