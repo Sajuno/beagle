@@ -37,7 +37,8 @@
     flex-direction: column;
     text-align: center;
 
-    background: linen;
+    background: tomato;
+    color: white;
     height: 80vh;
     font-size: 100%;
 }
