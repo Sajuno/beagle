@@ -1,0 +1,11 @@
+#correct-image {
+    border: 10px solid green;
+}
+
+.game-two-image {
+    max-height: 40vh;
+    border-radius: 5px;
+    flex: 1;
+    align-items: baseline;
+    justify-content: center;
+}
