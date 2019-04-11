@@ -46,6 +46,7 @@ class GameContent extends Component {
       this.props.resetCorrectGuesses();
       alert(`You are wrong, the right answer was ${this.state.breed}`);
     }
+  this.props.changeGame()
   };
 
   handleKeyUp(event) {
@@ -59,7 +60,6 @@ class GameContent extends Component {
       case "d":
         document.getElementById("D").click();
         break;
-
       default:
         break;
     }
@@ -113,13 +113,15 @@ class GameContent extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    usedBreeds: state.usedBreeds,
-    user: state.user,
-    showHint: state.showHint
-  };
-};
+
+const mapStateToProps = (state) => {
+    return {
+        usedBreeds: state.usedBreeds,
+        user: state.user,
+        showHint: state.showHint,
+        gameThreeState: state.gameThreeState,
+    }
+}
 
 export default connect(
   mapStateToProps,
@@ -129,6 +131,7 @@ export default connect(
     incrementCorrectGuesses,
     setDogsInUse,
     resetCorrectGuesses,
-    setHintState
-  }
-)(GameContent);
+    setHintState,
+    changeGame,
+})(GameContent)
+
