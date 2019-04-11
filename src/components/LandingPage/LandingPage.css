@@ -1,0 +1,104 @@
+.mainDiv {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 180%;
+    margin: auto;
+    height: auto;
+}
+
+.mainHeaderDiv {
+    text-align: center;
+    background: white;
+    padding: 25px 15px 25px 15px;
+    animation: animateleft 3.0s;
+}
+
+.bigFlexBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.flexBoxLeft {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.flexBoxRight {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    background-color: orange;
+}
+
+.dogopediaLeft {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+
+    background: tomato;
+    color: white;
+    height: 80vh;
+    font-size: 100%;
+}
+
+.dogopediaLeft img {
+    margin: 15px 15px 15px 15px;
+}
+
+#ManyDogs {
+    margin: auto;
+    width: 40%;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 1px;
+    animation: App-logo-spin infinite 5.0s linear;
+}
+
+#Manydogs:hover {
+    animation: App-logo-spin infinite 1s linear;
+}
+
+.dogopediaLeft h1 {
+    font-size: 120%;
+}
+
+.gameOneMainDiv,
+.gameTwoMainDiv,
+.gameThreeMainDiv {
+    color: white;
+    font-size: 5rem;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    flex: 1;
+}
+
+.footer {
+    font-size: 16px;
+    padding-top: 1rem;
+    text-align: center;
+}
+
+@keyframes animateleft {
+    from {
+        left: -300px;
+        opacity: 0
+    }
+    to {
+        left: 0;
+        opacity: 1
+    }
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

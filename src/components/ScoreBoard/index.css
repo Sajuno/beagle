@@ -1,0 +1,44 @@
+.ScoreboardMainDiv {
+    position: fixed;
+    align-self: flex-end;
+    bottom: 0;
+
+    margin-bottom: auto;    
+    color: white;
+    background-color: orange;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 1rem;
+
+    font-size: 1rem;
+    text-transform: capitalize;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.ScoreboardDiv {
+    display: flex;
+    flex:1;
+    flex-direction: row;
+    justify-content: center;
+
+    align-self: flex-end;
+}
+
+.ScoreBoardNameDiv, 
+.ScoreBoardScoreDiv,
+.ScoreBoardPercentageDiv,
+.ScoreBoardQuestionsDiv {
+    padding: 1rem;
+}
+
+.ScoreBoardPercentageDiv {
+    width: 30%;
+}
+
+.percentageBar {
+    width: 20rem;
+    height: 1rem;
+    border-radius: 10px;
+    background-color: tomato;
+}
