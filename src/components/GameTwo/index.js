@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { getDogs } from '../../actions/gameone/getDogs'
 import { connect } from 'react-redux'
 import GameTwoContent from './GameTwoContent'
+import ScoreboardContainer from '../ScoreBoardContainer'
 
 
 class GameTwo extends Component {
@@ -10,10 +11,11 @@ class GameTwo extends Component {
     }
 
     render() {
-        if(!this.props.gameOneDogs) return 'loading...'
+        if(!this.props.dogsInUse[0]) return 'loading...'
         return (
             <div>
-                <GameTwoContent breeds={this.props.gameOneDogs} />
+                <GameTwoContent breedsInUse={this.props.dogsInUse} breeds={this.props.gameOneDogs} />
+                <ScoreboardContainer /> 
             </div> 
         )
     }
@@ -21,7 +23,8 @@ class GameTwo extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        gameOneDogs: state.gameOneDogs
+        gameOneDogs: state.gameOneDogs,
+        dogsInUse: state.dogsInUse
     }
 }
 

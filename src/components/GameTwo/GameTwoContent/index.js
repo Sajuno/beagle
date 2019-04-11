@@ -11,9 +11,6 @@ import {incrementCorrectGuesses} from '../../../actions/user/incrementGuesses'
 import {resetCorrectGuesses} from '../../../actions/user/resetGuesses'
 import {setDogsInUse} from '../../../actions/gameone/setDogsInUse'
 import {selectRandomItems} from '../../GameOne/selectRandomItems'
-import {setHintState} from '../../../actions/gameone/setHintState'
-// import Hint from '../../GameOne/GameContent/Hint/Hint'
-
 
 class GameTwoContent extends Component {
     state = { }
@@ -29,9 +26,8 @@ class GameTwoContent extends Component {
             if(this.props.user.correctGuessesInARow === 5) {
                 this.props.setDogsInUse(selectRandomItems(3, this.props.breeds))
                 this.props.resetCorrectGuesses()
-            
-            alert("You are correct!")
             }
+            alert("You are correct!")
         }
         else {
             this.props.setUserScore(false)
@@ -45,8 +41,8 @@ class GameTwoContent extends Component {
     }
 
     setupGameTwo = () => {
-        if(this.props.showHint) this.props.setHintState()
-        const correctBreed = getRandomBreed(this.props.breeds)
+        console.log("setupgame:", this.props.breedsInUse)
+        const correctBreed = getRandomBreed(this.props.breedsInUse)
         const wrongBreed1 = this.getWrongBreed(correctBreed)
         const wrongBreed2 = this.getWrongBreed(correctBreed)
         request(`https://dog.ceo/api/breed/${correctBreed}/images/random/1`)
@@ -62,7 +58,6 @@ class GameTwoContent extends Component {
                 this.setState({ wrongImage2: res.body.message[0], wrongBreed2 })
             })
     
-        
     }
     getWrongBreed = (correctBreed) => {
         let wrongBreed = getRandomBreed(this.props.breeds)
@@ -104,7 +99,6 @@ class GameTwoContent extends Component {
                     )
                 }
                 <br/>
-                {/* <Hint breed={this.state.correctBreed} /> */}
                 <br/>
                 <h2>Click on the foto matching the Dog's breed</h2>
             </div>
@@ -129,5 +123,4 @@ export default connect(mapStateToProps, {
     incrementCorrectGuesses, 
     setDogsInUse, 
     resetCorrectGuesses,
-    setHintState 
 })(GameTwoContent)
