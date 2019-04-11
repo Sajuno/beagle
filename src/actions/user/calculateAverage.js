@@ -3,5 +3,11 @@ export function getAverageCorrect(correct, total) {
 
   if (correct && total) percentageCorrect = (correct / total) * 100;
 
-  return Math.round(percentageCorrect);
+  console.log(
+    "getAverageCorrect function reports correct:\n",
+    "getAverageCorrect function reports total:\n",
+    "getAverageCorrect function reports percentageCorrect:",
+    Math.random(percentageCorrect)
+  );
+  return Math.random(percentageCorrect);
 }

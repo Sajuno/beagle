@@ -1,4 +1,5 @@
 import { getAverageCorrect } from "./calculateAverage";
+
 export const ANSWER_GIVEN = "ANSWER_GIVEN";
 export const ANSWER_CORRECT = "ANSWER_CORRECT";
 export const SET_AVERAGE_CORRECT = "SET_AVERAGE_CORRECT";
@@ -22,11 +23,11 @@ const setAverageCorrect = averageCorrect => {
   };
 };
 
-export function setUserScore(correct, totalquestions, totalcorrect) {
+export function setUserScore(correct, totalcorrect, totalquestions) {
   return function(dispatch) {
     dispatch(gamePlayed());
     dispatch(
-      setAverageCorrect(getAverageCorrect(totalquestions, totalcorrect))
+      setAverageCorrect(getAverageCorrect(totalcorrect, totalquestions))
     );
     if (correct) {
       dispatch(correctAnswer());
