@@ -21,7 +21,11 @@ class GameTwoContent extends Component {
 
     checkAnswer = (answer, correctBreed) => {
         if(answer) {
-            this.props.setUserScore(true)
+            this.props.setUserScore(
+                true,
+                this.props.user.questionsAnsweredCorrectly + 1,
+                this.props.user.questionsAnswered + 1
+              )
             this.props.incrementCorrectGuesses()
             if(this.props.user.correctGuessesInARow === 5) {
                 this.props.setDogsInUse(selectRandomItems(3, this.props.breeds))
@@ -30,7 +34,11 @@ class GameTwoContent extends Component {
             alert("You are correct!")
         }
         else {
-            this.props.setUserScore(false)
+            this.props.setUserScore(
+                false,
+                this.props.user.questionsAnsweredCorrectly,
+                this.props.user.questionsAnswered + 1
+              )
             this.props.resetCorrectGuesses()
         }
     }
