@@ -27,6 +27,18 @@
 
 .ScoreBoardNameDiv, 
 .ScoreBoardScoreDiv,
-.ScoreBoardPercentageDiv {
+.ScoreBoardPercentageDiv,
+.ScoreBoardQuestionsDiv {
     padding: 1rem;
+}
+
+.ScoreBoardPercentageDiv {
+    width: 30%;
+}
+
+.percentageBar {
+    width: 20rem;
+    height: 1rem;
+    border-radius: 10px;
+    background-color: tomato;
 }
