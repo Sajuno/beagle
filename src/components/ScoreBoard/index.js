@@ -8,7 +8,9 @@ export default function ScoreBoard(props) {
       <div className="ScoreboardDiv">
         <div className="ScoreBoardNameDiv"> Name: {props.user.name}</div>
         <div className="ScoreBoardScoreDiv"> Score: {props.user.score}</div>
-        <div className="ScoreBoardPercentageDiv" /> Here' we'll show a cool percentage counter </div>
+        {/* remember to make div below self closing again */}
+        <div className="ScoreBoardPercentageDiv" > Here' we'll show a cool percentage counter </div>
+      </div>
     </div>
   );
 }

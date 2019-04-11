@@ -18,8 +18,16 @@
 
 .ScoreboardDiv {
     display: flex;
-    flex-direction: column;
-    display: inline;
+    flex:1;
+    flex-direction: row;
+    justify-content: center;
 
     align-self: flex-end;
+}
+
+.ScoreBoardNameDiv, 
+.ScoreBoardScoreDiv,
+.ScoreBoardPercentageDiv {
+    background-color: crimson;
+    padding: 1rem;
 }
