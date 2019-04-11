@@ -1,7 +1,10 @@
 import React from "react";
 import avatar from "./avatar-small.png";
+import { connect } from "react-redux";
+import { setUserName } from "../../actions/user/setUserName";
 
-export default function Profile(props) {
+
+export function Profile(props) {
   let percentageCorrect;
   let userName = "John Doe";
 
@@ -19,8 +22,16 @@ export default function Profile(props) {
     "Newbie",
     "Apprentice",
     "Dog lover",
+    "Puppyteer",
+    "Dog walker",
+    "Tree Barker",
     "Enthusiast",
+    "Hound Freak",
+    "Dog Professional",
+    "Ruler of the Flock",
+    "Dog Specialist",
     "Dog Whisperer",
+    "Dogopedia Expert",
     "Wizard"
   ];
 
@@ -29,7 +40,15 @@ export default function Profile(props) {
   else if (props.user.score < 400) userRank = ranks[2];
   else if (props.user.score < 600) userRank = ranks[3];
   else if (props.user.score < 800) userRank = ranks[4];
-  else if (props.user.score >= 800) userRank = ranks[5];
+  else if (props.user.score < 900) userRank = ranks[5];
+  else if (props.user.score < 1000) userRank = ranks[6];
+  else if (props.user.score < 1100) userRank = ranks[7];
+  else if (props.user.score < 1200) userRank = ranks[8];
+  else if (props.user.score < 1300) userRank = ranks[9];
+  else if (props.user.score < 1400) userRank = ranks[10];
+  else if (props.user.score < 1600) userRank = ranks[11];
+  else if (props.user.score < 1800) userRank = ranks[12];
+  else if (props.user.score >= 800) userRank = ranks[13];
 
   return (
     <div className="ProfileMainDiv">
@@ -37,7 +56,18 @@ export default function Profile(props) {
       <div className="ProfileAvatarDiv">
         <img src={avatar} alt="John Doe" />
       </div>
-      <div className="ScoreBoardNameDiv"> Name: {userName}</div>
+      <div className="ScoreBoardNameDiv">
+        Name: {userName} &nbsp; &nbsp;
+        <input
+          type="text"
+          name="title"
+          value={props.inputValue}
+          onChange={props.handleInput}
+        />
+        <button onClick={props.handleClick} value="Change">
+          click me
+        </button>
+      </div>
       <div className="ScoreBoardScoreDiv"> Score: {props.user.score}</div>
       <div className="ScoreBoardScoreDiv">
         Rank: {userRank}
@@ -56,3 +86,12 @@ export default function Profile(props) {
     </div>
   );
 }
+
+const mapStateToProps = state => {
+  return {};
+};
+
+export default connect(
+  mapStateToProps,
+  { setUserName }
+)(Profile);
