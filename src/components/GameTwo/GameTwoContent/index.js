@@ -64,7 +64,6 @@ class GameTwoContent extends Component {
     }
 
     alertWrong () {
-        console.log('alertWrong test!')
         setTimeout(
             () => {
                 window.requestAnimationFrame(() => {
@@ -77,7 +76,6 @@ class GameTwoContent extends Component {
     }
 
     render() {
-        console.log('highlightCorrect test:', this.props.highlightCorrect)
         if (this.props.highlightCorrect) {
             this.alertWrong()
         }
