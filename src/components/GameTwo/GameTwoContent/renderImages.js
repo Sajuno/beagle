@@ -17,7 +17,6 @@ export function renderImages(wrongOne, wrongTwo, correctPicture, handleClick, co
                     alt="correct"
                     src={img}
                     className="game-two-image"
-                    id={highlightCorrect ? 'correct-image' : null}
                 /> 
                 : <img
                     onClick={() => { handleClickWrapper(false) }}

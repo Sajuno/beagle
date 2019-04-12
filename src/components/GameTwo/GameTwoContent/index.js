@@ -36,7 +36,7 @@ class GameTwoContent extends Component {
                 this.props.setDogsInUse(selectRandomItems(3, this.props.breeds))
                 this.props.resetCorrectGuesses()
             }
-            alert("You are correct!")
+            // alert("You are correct!")
         }
         else {
             this.props.setUserScore(
@@ -120,9 +120,9 @@ class GameTwoContent extends Component {
                     )
                 }
                 <br/>
-                <Modal show={this.state.show}>
-                    <ModalHeader>You're answer is:</ModalHeader>
-                    <ModalBody>Body</ModalBody>
+                <Modal show={this.state.show} size="lg">
+                    <ModalHeader>You're answer is: {this.state.answer ? 'correct' : 'wrong'}</ModalHeader>
+                    <ModalBody>{this.state.answer ? `This is indeed an ${this.state.correctBreed}` : 'This was the correct answer:'}<br/><img src={this.state.correctImage} className="game-two-image" alt="Loading.."/></ModalBody>
                     <ModalFooter>
                         <Button onClick={this.handleClose}>Next question</Button>
                     </ModalFooter>
