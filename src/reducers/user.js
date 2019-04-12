@@ -2,11 +2,10 @@ import { SET_USERNAME } from "../actions/user/setUserName";
 import { ANSWER_GIVEN } from "../actions/user/setUserScore";
 import { ANSWER_CORRECT } from "../actions/user/setUserScore";
 import { SET_AVERAGE_CORRECT } from "../actions/user/setUserScore";
-import { INCREMENT_CORRECT_GUESSES } from '../actions/user/incrementGuesses'
-import { RESET_CORRECT_GUESSES } from '../actions/user/resetGuesses'
-import { ANSWER_SHOWN } from '../actions/user/unhighlight'
-import { SET_KEYMAP } from '../actions/user/setKeymap'
-
+import { INCREMENT_CORRECT_GUESSES } from "../actions/user/incrementGuesses";
+import { RESET_CORRECT_GUESSES } from "../actions/user/resetGuesses";
+import { ANSWER_SHOWN } from "../actions/user/unhighlight";
+import { SET_KEYMAP } from "../actions/user/setKeymap";
 
 export default (
   state = {
@@ -15,12 +14,14 @@ export default (
     score: 0,
     correctGuessesInARow: 0,
     highlightCorrect: false,
-    keyMap: ['a','s','d']
+    keyMap: ["a", "s", "d"],
+    name: "John Doe"
   },
   action = {}
 ) => {
   switch (action.type) {
     case SET_USERNAME:
+      console.log("set action", action);
       return {
         ...state,
         name: action.payload
@@ -36,7 +37,7 @@ export default (
         ...state,
         score: state.score + 50,
         highlightCorrect: false,
-        questionsAnsweredCorrectly: state.questionsAnsweredCorrectly + 1,
+        questionsAnsweredCorrectly: state.questionsAnsweredCorrectly + 1
       };
     case SET_AVERAGE_CORRECT:
       return {
@@ -58,7 +59,7 @@ export default (
         ...state,
         highlightCorrect: false
       };
-      case SET_KEYMAP:
+    case SET_KEYMAP:
       return {
         ...state,
         name: action.payload
