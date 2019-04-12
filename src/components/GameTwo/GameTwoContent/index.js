@@ -18,6 +18,11 @@ import ModalFooter from 'react-bootstrap/ModalFooter'
 import Button from 'react-bootstrap/Button'
 
 class GameTwoContent extends Component {
+    constructor(props){
+        super(props);
+        this.handleKeyUp = this.handleKeyUp.bind(this);
+    }
+
     state = { show: false, answer: true }
 
     componentDidMount() {
@@ -55,17 +60,16 @@ class GameTwoContent extends Component {
 
     handleKeyUp(event) {
         switch (event.key) {
-          case "a":
+        case this.props.user.keyMap[0]:
             document.getElementById("A").click();
             break;
-          case "s":
+        case this.props.user.keyMap[1]:
             document.getElementById("S").click();
             break;
-          case "d":
+        case this.props.user.keyMap[2]:
             document.getElementById("D").click();
             break;
-    
-          default:
+        default:
             break;
         }
     }
@@ -134,9 +138,9 @@ class GameTwoContent extends Component {
                 </Modal>
             </div>
             <div className="keyMapDivs">
-                <div className="keyMapLegend"> A </div>
-                <div className="keyMapLegend"> S </div>
-                <div className="keyMapLegend"> D </div>
+                <div className="keyMapLegend"> {this.props.user.keyMap[0]} </div>
+                <div className="keyMapLegend"> {this.props.user.keyMap[1]} </div>
+                <div className="keyMapLegend"> {this.props.user.keyMap[2]} </div>
             </div>
             <div className="GameTwoh2">
                 <h2>Click on the photo matching the {this.state.correctBreed} breed</h2>
