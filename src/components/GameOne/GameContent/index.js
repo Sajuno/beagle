@@ -58,11 +58,11 @@ class GameContent extends Component {
       );
       this.props.resetCorrectGuesses();
     }
-  this.props.changeGame()
   };
-
+  
   handleClose = () => {
     this.setState({ show: false })
+    this.props.changeGame()
     this.initQuestion();
   }
 
@@ -121,7 +121,7 @@ class GameContent extends Component {
             You're answer is: {this.state.answer ? 'correct' : 'wrong'}
           </ModalHeader>
           <ModalBody>
-            {this.state.answer ? `This is indeed an ${this.state.breed}` : 'Better luck next time'}
+            {this.state.answer ? `This is indeed a ${this.state.breed}` : 'Better luck next time'}
           </ModalBody>
           <ModalFooter>
             <Button onClick={this.handleClose}>Next question</Button>
