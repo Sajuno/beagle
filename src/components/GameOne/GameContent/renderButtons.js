@@ -11,27 +11,27 @@ export function renderButtons(wrongOne, wrongTwo, correct, handleClick, user) {
 
     return (
         answersWithLetters.map(({ text, letter }) =>
-             <button
-                 value={
-                     text === correct
-                         ? text
-                         : text
-                 }
-                 onClick={handleClick}
-                 id={letter}
-                 className="GameOne"
-             >
-                 <p className='letter'>{letter}</p> {text}
-             </button>
+            <button
+                value={
+                    text === correct
+                        ? text
+                        : text
+                }
+                onClick={handleClick}
+                id={letter}
+                className="GameOne"
+            >
+                <p className='letter'>{letter}</p> {text}
+            </button>
         )
     )
 }
 
 const mapStateToProps = state => {
     return {
-      user: state.user
+        user: state.user
     };
-  };
+};
 
-  export default connect(mapStateToProps)(renderButtons)
+export default connect(mapStateToProps)(renderButtons)
   

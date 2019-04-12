@@ -19,199 +19,174 @@ import "../../../modal.css";
 import { changeGame } from "../../../actions/gamethree/changeGame";
 
 class GameTwoContent extends Component {
-  constructor(props) {
-    super(props);
-    this.handleKeyUp = this.handleKeyUp.bind(this);
-  }
+    constructor(props) {
+        super(props);
+        this.handleKeyUp = this.handleKeyUp.bind(this);
+    }
 
   state = { show: false, answer: true };
 
   componentDidMount() {
-    window.addEventListener("keyup", this.handleKeyUp);
-    this.setupGameTwo();
+      window.addEventListener("keyup", this.handleKeyUp);
+      this.setupGameTwo();
   }
 
   componentWillUnmount() {
-    window.removeEventListener("keyup", this.handleKeyUp);
+      window.removeEventListener("keyup", this.handleKeyUp);
   }
 
   checkAnswer = (answer, correctBreed) => {
-    if (answer) {
-      this.props.setUserScore(
-        true,
-        this.props.user.questionsAnsweredCorrectly + 1,
-        this.props.user.questionsAnswered + 1
-      );
-      this.props.incrementCorrectGuesses();
-      if (this.props.user.correctGuessesInARow === 5) {
-        this.props.setDogsInUse(selectRandomItems(3, this.props.breeds));
-        this.props.resetCorrectGuesses();
+      if (answer) {
+          this.props.setUserScore(
+              true,
+              this.props.user.questionsAnsweredCorrectly + 1,
+              this.props.user.questionsAnswered + 1
+          );
+          this.props.incrementCorrectGuesses();
+          if (this.props.user.correctGuessesInARow === 5) {
+              this.props.setDogsInUse(selectRandomItems(3, this.props.breeds));
+              this.props.resetCorrectGuesses();
+          }
+      } else {
+          this.props.setUserScore(
+              false,
+              this.props.user.questionsAnsweredCorrectly,
+              this.props.user.questionsAnswered + 1
+          );
+          this.props.resetCorrectGuesses();
       }
-    } else {
-      this.props.setUserScore(
-        false,
-        this.props.user.questionsAnsweredCorrectly,
-        this.props.user.questionsAnswered + 1
-      );
-      this.props.resetCorrectGuesses();
-    }
-    this.handleShow();
+      this.handleShow();
   };
 
-    handleKeyUp(event) {
-        switch (event.key) {
-          case this.props.user.keyMap.firstKey:
-            document.getElementById("A").click();
-            break;
-          case this.props.user.keyMap.secondKey:
-            document.getElementById("S").click();
-            break;
-          case this.props.user.keyMap.thirdKey:
-            document.getElementById("D").click();
-            break;
-          default:
-            break;
-        }
+  handleKeyUp(event) {
+      switch (event.key) {
+      case this.props.user.firstKey:
+          document.getElementById(this.props.user.firstKey).click();
+          break;
+      case this.props.user.secondKey:
+          document.getElementById(this.props.user.secondKey).click();
+          break;
+      case this.props.user.thirdKey:
+          document.getElementById(this.props.user.thirdKey).click();
+          break;
+      default:
+          break;
       }
+  }
     
     handleClick = (answer, correctBreed) => {
         this.setState({ answer })
         this.checkAnswer(answer, correctBreed)
     }
-  }
-
-  handleClick = (answer, correctBreed) => {
-    this.setState({ answer });
-    this.checkAnswer(answer, correctBreed);
-  };
 
   setupGameTwo = () => {
-    const correctBreed = getRandomBreed(this.props.breedsInUse);
-    const wrongBreed1 = this.getWrongBreed(correctBreed);
-    const wrongBreed2 = this.getWrongBreed(correctBreed);
-    request(`https://dog.ceo/api/breed/${correctBreed}/images/random/1`).then(
-      res => {
-        this.setState({ correctImage: res.body.message[0], correctBreed });
-      }
-    );
-    request(`https://dog.ceo/api/breed/${wrongBreed1}/images/random/1`).then(
-      res => {
-        this.setState({ wrongImage1: res.body.message[0], wrongBreed1 });
-      }
-    );
-    request(`https://dog.ceo/api/breed/${wrongBreed2}/images/random/1`).then(
-      res => {
-        this.setState({ wrongImage2: res.body.message[0], wrongBreed2 });
-      }
-    );
+      const correctBreed = getRandomBreed(this.props.breedsInUse);
+      const wrongBreed1 = this.getWrongBreed(correctBreed);
+      const wrongBreed2 = this.getWrongBreed(correctBreed);
+      request(`https://dog.ceo/api/breed/${correctBreed}/images/random/1`).then(
+          res => {
+              this.setState({ correctImage: res.body.message[0], correctBreed });
+          }
+      );
+      request(`https://dog.ceo/api/breed/${wrongBreed1}/images/random/1`).then(
+          res => {
+              this.setState({ wrongImage1: res.body.message[0], wrongBreed1 });
+          }
+      );
+      request(`https://dog.ceo/api/breed/${wrongBreed2}/images/random/1`).then(
+          res => {
+              this.setState({ wrongImage2: res.body.message[0], wrongBreed2 });
+          }
+      );
   };
+  
   getWrongBreed = correctBreed => {
-    let wrongBreed = getRandomBreed(this.props.breeds);
-    while (wrongBreed === correctBreed) {
-      wrongBreed = getRandomBreed(this.props.breeds);
-    }
-    return wrongBreed;
+      let wrongBreed = getRandomBreed(this.props.breeds);
+      while (wrongBreed === correctBreed) {
+          wrongBreed = getRandomBreed(this.props.breeds);
+      }
+      return wrongBreed;
   };
 
   handleClose = () => {
-    this.setState({ show: false });
-    this.props.changeGame();
-    this.setupGameTwo();
+      this.setState({ show: false });
+      this.props.changeGame();
+      this.setupGameTwo();
   };
 
 
   handleShow = () => {
-    this.setState({ show: true });
+      this.setState({ show: true });
   };
-                <Modal show={this.state.show} size="lg">
-                    <ModalHeader>Your answer is: {this.state.answer ? 'correct' : 'wrong'}</ModalHeader>
-                    <ModalBody>{this.state.answer ? `This is indeed an ${this.state.correctBreed}` : 'This was the correct answer:'}<br/><img src={this.state.correctImage} className="game-two-image" alt="Loading.."/></ModalBody>
-                    <ModalFooter>
-                        <Button className="modal-button" onClick={this.handleClose}>Next question</Button>
-                    </ModalFooter>
-                </Modal>
-            </div>
-            <div className="keyMapDivs">
-                <div className="keyMapLegend"> {this.props.user.keyMap.firstKey} </div>
-                <div className="keyMapLegend"> {this.props.user.keyMap.secondKey} </div>
-                <div className="keyMapLegend"> {this.props.user.keyMap.thirdKey} </div>
-            </div>
-            <div className="GameTwoh2">
-                <h2>Click on the photo matching the {this.state.correctBreed} breed</h2>
-            </div>
-        </>
-        )
-    }
-}
-
 
   render() {
-    if (!this.state.correctImage) return "loading...";
-    return (
+      if (!this.state.correctImage) return "loading...";
+      return (
       <>
         <div className="GameTwoDIV">
-          {renderImages(
-            this.state.wrongImage1,
-            this.state.wrongImage2,
-            this.state.correctImage,
-            this.handleClick,
-            this.state.correctBreed
-          )}
+            {renderImages(
+                this.state.wrongImage1,
+                this.state.wrongImage2,
+                this.state.correctImage,
+                this.handleClick,
+                this.state.correctBreed,
+                this.props.user
+            )}
 
-          <Modal show={this.state.show} size="lg">
-            <ModalHeader>
+            <Modal show={this.state.show} size="lg">
+                <ModalHeader>
               Your answer is: {this.state.answer ? "correct" : "wrong"}
-            </ModalHeader>
-            <ModalBody>
-              {this.state.answer
-                ? `This is indeed an ${this.state.correctBreed}!`
-                : "This was the correct answer:"}
-              <br />
-              <img
-                src={this.state.correctImage}
-                className="game-two-image"
-                alt="Loading.."
-              />
-            </ModalBody>
-            <ModalFooter>
-              <Button className="modal-button" onClick={this.handleClose}>
+                </ModalHeader>
+                <ModalBody>
+                    {this.state.answer
+                        ? `This is indeed an ${this.state.correctBreed}!`
+                        : "This was the correct answer:"}
+                    <br />
+                    <img
+                        src={this.state.correctImage}
+                        className="game-two-image"
+                        alt="Loading.."
+                    />
+                </ModalBody>
+                <ModalFooter>
+                    <Button className="modal-button" onClick={this.handleClose}>
                 Next question
-              </Button>
-            </ModalFooter>
-          </Modal>
+                    </Button>
+                </ModalFooter>
+            </Modal>
         </div>
         <div className="keyMapDivs">
-          <div className="keyMapLegend"> {this.props.user.keyMap[0]} </div>
-          <div className="keyMapLegend"> {this.props.user.keyMap[1]} </div>
-          <div className="keyMapLegend"> {this.props.user.keyMap[2]} </div>
+            <div className="keyMapLegend"> {this.props.user.firstKey} </div>
+            <div className="keyMapLegend"> {this.props.user.secondKey} </div>
+            <div className="keyMapLegend"> {this.props.user.thirdKey} </div>
         </div>
         <div className="GameTwoh2">
-          <h2>
+            <h2>
             Click on the photo matching the {this.state.correctBreed} breed
-          </h2>
+            </h2>
         </div>
       </>
-    );
+      );
   }
 }
 
 const mapStateToProps = state => {
-  return {
-    highlightCorrect: state.user.highlightCorrect,
-    usedBreeds: state.usedBreeds,
-    user: state.user,
-    showHint: state.showHint
-  };
+    return {
+        highlightCorrect: state.user.highlightCorrect,
+        usedBreeds: state.usedBreeds,
+        user: state.user,
+        showHint: state.showHint
+    };
 };
 
 export default connect(
-  mapStateToProps,
-  {
-    setUserScore,
-    addUsedBreed,
-    incrementCorrectGuesses,
-    setDogsInUse,
-    resetCorrectGuesses,
-    changeGame
-  }
+    mapStateToProps,
+    {
+        setUserScore,
+        addUsedBreed,
+        incrementCorrectGuesses,
+        setDogsInUse,
+        resetCorrectGuesses,
+        changeGame
+    }
 )(GameTwoContent);
