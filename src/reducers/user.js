@@ -9,6 +9,7 @@ import { SET_FIRSTKEY } from "../actions/user/setFirstKey";
 import { SET_SECONDKEY } from "../actions/user/setSecondKey";
 import { SET_THIRDKEY } from "../actions/user/setThirdKey";
 
+
 export default (
   state = {
     questionsAnswered: 0,
@@ -34,7 +35,6 @@ export default (
       return {
         ...state,
         questionsAnswered: state.questionsAnswered + 1,
-        highlightCorrect: true
       };
     case ANSWER_CORRECT:
       return {

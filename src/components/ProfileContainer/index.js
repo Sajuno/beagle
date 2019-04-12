@@ -12,7 +12,6 @@ class ProfileContainer extends Component {
 
   handleInput(event) {
     const { value } = event.target;
-    console.log("value test:", value);
     this.setState({ inputValue: value });
   }
 
@@ -35,9 +34,7 @@ class ProfileContainer extends Component {
   }
 
   handleClick = () => {
-    console.log("this.state test:", this.state);
     const { inputValue } = this.state;
-    console.log("inputValue test:", inputValue);
     this.props.setUserName(this.state.inputValue);
   };
 

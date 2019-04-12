@@ -13,6 +13,13 @@ import { changeGame } from "../../../actions/gamethree/changeGame";
 import { connect } from "react-redux";
 import Hint from "./Hint/Hint";
 import "./index.css";
+import Modal from 'react-bootstrap/Modal'
+import ModalHeader from 'react-bootstrap/ModalHeader'
+import ModalBody from 'react-bootstrap/ModalBody'
+import ModalFooter from 'react-bootstrap/ModalFooter'
+import Button from 'react-bootstrap/Button'
+import '../../../modal.css'
+
 
 
 class GameContent extends Component {
@@ -21,7 +28,7 @@ class GameContent extends Component {
     this.handleKeyUp = this.handleKeyUp.bind(this);
   }
 
-  state = {};
+  state = { show: false, answer: true};
 
   componentDidMount() {
     window.addEventListener("keyup", this.handleKeyUp);
@@ -34,6 +41,7 @@ class GameContent extends Component {
 
   checkAnswer = answer => {
     if (answer === this.state.breed) {
+      this.setState({ answer: true})
       this.props.addUsedBreed(this.state.breed);
       this.props.setUserScore(
         true,
@@ -45,18 +53,26 @@ class GameContent extends Component {
         this.props.setDogsInUse(selectRandomItems(3, this.props.breeds));
         this.props.resetCorrectGuesses();
       }
-      alert("You are correct!");
     } else {
+      this.setState({ answer: false})
       this.props.setUserScore(
         false,
         this.props.user.questionsAnsweredCorrectly,
         this.props.user.questionsAnswered + 1
       );
       this.props.resetCorrectGuesses();
-      alert(`You are wrong, the right answer was ${this.state.breed}`);
     }
-  this.props.changeGame()
   };
+  
+  handleClose = () => {
+    this.setState({ show: false })
+    this.props.changeGame()
+    this.initQuestion();
+  }
+
+  handleShow = () => {
+    this.setState({ show: true });
+  }
 
   handleKeyUp(event) {
     switch (event.key) {
@@ -84,7 +100,7 @@ class GameContent extends Component {
 
   handleClick = evt => {
     this.checkAnswer(evt.target.value);
-    this.initQuestion();
+    this.handleShow()
   };
 
   initQuestion = () => {
@@ -104,6 +120,18 @@ class GameContent extends Component {
     console.log('this.props test:', this.props)
     return (
       <>
+        <Modal show={this.state.show} size="lg">
+          <ModalHeader>
+            You're answer is: {this.state.answer ? 'correct' : 'wrong'}
+          </ModalHeader>
+          <ModalBody>
+            {this.state.answer ? `This is indeed a ${this.state.breed}` : 'Better luck next time'}
+          </ModalBody>
+          <ModalFooter>
+            <Button className="modal-button" onClick={this.handleClose}>Next question</Button>
+          </ModalFooter>
+        </Modal>
+
         <img
           className="GameOne"
           src={this.state.image}
