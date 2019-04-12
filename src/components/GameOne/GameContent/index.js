@@ -13,22 +13,20 @@ import { changeGame } from "../../../actions/gamethree/changeGame";
 import { connect } from "react-redux";
 import Hint from "./Hint/Hint";
 import "./index.css";
-import Modal from 'react-bootstrap/Modal'
-import ModalHeader from 'react-bootstrap/ModalHeader'
-import ModalBody from 'react-bootstrap/ModalBody'
-import ModalFooter from 'react-bootstrap/ModalFooter'
-import Button from 'react-bootstrap/Button'
-import '../../../modal.css'
-
-
+import Modal from "react-bootstrap/Modal";
+import ModalHeader from "react-bootstrap/ModalHeader";
+import ModalBody from "react-bootstrap/ModalBody";
+import ModalFooter from "react-bootstrap/ModalFooter";
+import Button from "react-bootstrap/Button";
+import "../../../modal.css";
 
 class GameContent extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.handleKeyUp = this.handleKeyUp.bind(this);
   }
 
-  state = { show: false, answer: true};
+  state = { show: false, answer: true };
 
   componentDidMount() {
     window.addEventListener("keyup", this.handleKeyUp);
@@ -36,12 +34,12 @@ class GameContent extends Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener("keyup", this.handleKeyUp)
+    window.removeEventListener("keyup", this.handleKeyUp);
   }
 
   checkAnswer = answer => {
     if (answer === this.state.breed) {
-      this.setState({ answer: true})
+      this.setState({ answer: true });
       this.props.addUsedBreed(this.state.breed);
       this.props.setUserScore(
         true,
@@ -49,12 +47,15 @@ class GameContent extends Component {
         this.props.user.questionsAnswered + 1
       );
       this.props.incrementCorrectGuesses();
-      if (this.props.user.correctGuessesInARow !== 0 && this.props.user.correctGuessesInARow % 5 === 0) {
+      if (
+        this.props.user.correctGuessesInARow !== 0 &&
+        this.props.user.correctGuessesInARow % 5 === 0
+      ) {
         this.props.setDogsInUse(selectRandomItems(3, this.props.breeds));
         this.props.resetCorrectGuesses();
       }
     } else {
-      this.setState({ answer: false})
+      this.setState({ answer: false });
       this.props.setUserScore(
         false,
         this.props.user.questionsAnsweredCorrectly,
@@ -63,16 +64,16 @@ class GameContent extends Component {
       this.props.resetCorrectGuesses();
     }
   };
-  
+
   handleClose = () => {
-    this.setState({ show: false })
-    this.props.changeGame()
+    this.setState({ show: false });
+    this.props.changeGame();
     this.initQuestion();
-  }
+  };
 
   handleShow = () => {
     this.setState({ show: true });
-  }
+  };
 
   handleKeyUp(event) {
     switch (event.key) {
@@ -100,7 +101,7 @@ class GameContent extends Component {
 
   handleClick = evt => {
     this.checkAnswer(evt.target.value);
-    this.handleShow()
+    this.handleShow();
   };
 
   initQuestion = () => {
@@ -117,18 +118,22 @@ class GameContent extends Component {
 
   render() {
     if (!this.state.image) return "loading...";
-    console.log('this.props test:', this.props)
+    console.log("this.props test:", this.props);
     return (
       <>
         <Modal show={this.state.show} size="lg">
           <ModalHeader>
-            You're answer is: {this.state.answer ? 'correct' : 'wrong'}
+            Your answer is {this.state.answer ? "correct." : "wrong."}
           </ModalHeader>
           <ModalBody>
-            {this.state.answer ? `This is indeed a ${this.state.breed}` : 'Better luck next time'}
+            {this.state.answer
+              ? `This is indeed a ${this.state.breed}!`
+              : `It was a ${this.state.breed}. Keep practising!`}
           </ModalBody>
           <ModalFooter>
-            <Button className="modal-button" onClick={this.handleClose}>Next question</Button>
+            <Button className="modal-button" onClick={this.handleClose}>
+              Next question
+            </Button>
           </ModalFooter>
         </Modal>
 
@@ -151,15 +156,14 @@ class GameContent extends Component {
   }
 }
 
-
-const mapStateToProps = (state) => {
-    return {
-        usedBreeds: state.usedBreeds,
-        user: state.user,
-        showHint: state.showHint,
-        gameThreeState: state.gameThreeState,
-    }
-}
+const mapStateToProps = state => {
+  return {
+    usedBreeds: state.usedBreeds,
+    user: state.user,
+    showHint: state.showHint,
+    gameThreeState: state.gameThreeState
+  };
+};
 
 export default connect(
   mapStateToProps,
@@ -170,6 +174,6 @@ export default connect(
     setDogsInUse,
     resetCorrectGuesses,
     setHintState,
-    changeGame,
-})(GameContent)
-
+    changeGame
+  }
+)(GameContent);

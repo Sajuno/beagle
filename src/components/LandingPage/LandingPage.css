@@ -36,7 +36,6 @@
     justify-content: center;
     flex-direction: column;
     text-align: center;
-
     background: tomato;
     color: white;
     height: 80vh;
@@ -56,7 +55,7 @@
     animation: App-logo-spin infinite 5.0s linear;
 }
 
-#Manydogs:hover {
+#ManyDogs:hover {
     animation: App-logo-spin infinite 1s linear;
 }
 
@@ -64,17 +63,21 @@
     font-size: 120%;
 }
 
-.gameOneMainDiv,
-.gameTwoMainDiv,
-.gameThreeMainDiv {
+.gameOneMainDiv, .gameTwoMainDiv, .gameThreeMainDiv {
     color: white;
     font-size: 5rem;
-
     display: flex;
     justify-content: center;
     flex-direction: column;
-    text-align: center;
+    text-align: left;
     flex: 1;
+    padding: 0px 0px 0px 70px;
+}
+
+.gameOneDescriptionDiv, .gameTwoDescriptionDiv, .gameThreeDescriptionDiv {
+    color: black;
+    padding: 0px 0px 0px 70px;
+    font-size: 1rem;
 }
 
 .footer {
