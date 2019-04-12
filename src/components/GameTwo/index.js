@@ -14,7 +14,7 @@ class GameTwo extends Component {
         if(!this.props.dogsInUse[0]) return 'loading...'
         return (
             <div>
-                <ReturnButton toPath={'../'} pageName={'Landing page'}/>
+                <ReturnButton toPath={'../home'} pageName={'Home'}/>
                 <ReturnButton toPath={'../dogopedia'} pageName={'Dogopedia'}/>
                 <GameTwoContent breedsInUse={this.props.dogsInUse} breeds={this.props.gameOneDogs} />
                 <ScoreboardContainer /> 

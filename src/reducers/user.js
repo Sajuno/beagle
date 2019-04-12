@@ -5,6 +5,7 @@ import { SET_AVERAGE_CORRECT } from "../actions/user/setUserScore";
 import { INCREMENT_CORRECT_GUESSES } from '../actions/user/incrementGuesses'
 import { RESET_CORRECT_GUESSES } from '../actions/user/resetGuesses'
 import { ANSWER_SHOWN } from '../actions/user/unhighlight'
+import { SET_KEYMAP } from '../actions/user/setKeymap'
 
 
 export default (
@@ -14,6 +15,7 @@ export default (
     score: 0,
     correctGuessesInARow: 0,
     highlightCorrect: false,
+    keyMap: ['a','s','d']
   },
   action = {}
 ) => {
@@ -55,6 +57,11 @@ export default (
       return {
         ...state,
         highlightCorrect: false
+      };
+      case SET_KEYMAP:
+      return {
+        ...state,
+        name: action.payload
       };
     default:
       return state;

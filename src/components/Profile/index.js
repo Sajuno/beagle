@@ -1,17 +1,21 @@
 import React from "react";
-import { Progress } from "react-sweet-progress";
-import "react-sweet-progress/lib/style.css";
-import "./index.css";
+import avatar from "./avatar-small.png";
+import { connect } from "react-redux";
+import { setUserName } from "../../actions/user/setUserName";
 
-export default function ScoreBoard(props) {
+
+export function Profile(props) {
   let percentageCorrect;
+  let userName = "John Doe";
+
+  if (props.user.name) userName = props.user.name;
 
   if (!props.user.averageCorrect) {
     percentageCorrect = 0;
   } else {
     percentageCorrect = props.user.averageCorrect;
   }
-
+  
   // calculate user's rank
   let userRank = "Newbie";
   const ranks = [
@@ -47,36 +51,47 @@ export default function ScoreBoard(props) {
   else if (props.user.score >= 800) userRank = ranks[13];
 
   return (
-    <div className="ScoreboardMainDiv">
-      <h1>Scoreboard</h1>
-      <div className="ScoreboardDiv">
-        <div className="ScoreBoardNameDiv"> Name: {props.user.name}</div>
-        <div className="ScoreBoardScoreDiv"> Score: {props.user.score}</div>
-        <div className="ScoreBoardScoreDiv">
-          Questions: {props.user.questionsAnsweredCorrectly}/
-          {props.user.questionsAnswered}
-        </div>
-        <div className="ScoreBoardPercentageDiv">
-          <Progress
-            percent={percentageCorrect}
-            theme={{
-              success: {
-                symbol: "🐕",
-                color: "lightgreen"
-              },
-              active: {
-                symbol: "🐩",
-                color: "tomato"
-              },
-              default: {
-                symbol: "💩",
-                color: "crimson"
-              }
-            }}
-          />
-          {userRank}
-        </div>
+    <div className="ProfileMainDiv">
+      <h1>Profile</h1>
+      <div className="ProfileAvatarDiv">
+        <img src={avatar} alt="John Doe" />
       </div>
+      <div className="ScoreBoardNameDiv">
+        Name: {userName} &nbsp; &nbsp;
+        <input
+          type="text"
+          name="title"
+          value={props.inputValue}
+          onChange={props.handleInput}
+        />
+        <button onClick={props.handleClick} value="Change">
+          click me
+        </button>
+      </div>
+      <div className="ScoreBoardScoreDiv"> Score: {props.user.score}</div>
+      <div className="ScoreBoardScoreDiv">
+        Rank: {userRank}
+        <br />
+        <br />
+        Questions answered: {props.user.questionsAnswered}
+        <br />
+        Questions correct: {props.user.questionsAnsweredCorrectly}
+        <br />
+      </div>
+      <div className="ScoreBoardPercentageDiv" />
+      Percentage correct:
+      <br />
+      <br />
+      INSERT ALBERT'S PROGRESS BAR HERE
     </div>
   );
 }
+
+const mapStateToProps = state => {
+  return {};
+};
+
+export default connect(
+  mapStateToProps,
+  { setUserName }
+)(Profile);
