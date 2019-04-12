@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import Profile from "../Profile";
 import { connect } from "react-redux";
 import { setUserName } from "../../actions/user/setUserName";
+import { setFirstKey } from '../../actions/user/setFirstKey'
+import { setSecondKey } from '../../actions/user/setSecondKey'
+import { setThirdKey } from '../../actions/user/setThirdKey'
 import ReturnButton from "../ReturnButton";
 
 class ProfileContainer extends Component {
@@ -10,6 +13,24 @@ class ProfileContainer extends Component {
   handleInput(event) {
     const { value } = event.target;
     this.setState({ inputValue: value });
+  }
+
+  handleFirstKeymap = (event) => {
+    const { value } = event.target;
+    console.log("value test:", value);
+    this.props.setFirstKey(value);
+  }
+
+  handleSecondKeymap = (event) => {
+    const { value } = event.target;
+    console.log("value test:", value);
+    this.props.setSecondKey(value);
+  }
+
+  handleThirdKeymap = (event) => {
+    const { value } = event.target;
+    console.log("value test:", value);
+    this.props.setThirdKey(value);
   }
 
   handleClick = () => {
@@ -32,6 +53,9 @@ class ProfileContainer extends Component {
           inputValue={this.state.inputValue}
           handleClick={this.handleClick}
           handleInput={event => this.handleInput(event)}
+          handleFirstKeymap={this.handleFirstKeymap}
+          handleSecondKeymap={this.handleSecondKeymap}
+          handleThirdKeymap={this.handleThirdKeymap}
         />
       </>
     );
@@ -46,5 +70,8 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { setUserName }
+  { setUserName,
+    setFirstKey,
+    setSecondKey,
+    setThirdKey }
 )(ProfileContainer);

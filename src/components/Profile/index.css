@@ -20,3 +20,62 @@ input.keymap {
 
     margin: 1rem;
 }
+
+img.ProfileAvatarDiv {
+    border-radius: 50px;
+    height: 10rem;
+}
+
+.ProfileMainDiv {
+    display: flex;
+    flex-direction: row;
+    margin: 5rem;
+    font-size: 1.2rem;
+    text-transform: capitalize;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.flexLeft {
+    flex: 1;
+    display: red;
+}
+
+.flexRight {
+    flex: 1;
+}
+
+button.Profile {
+    color: crimson;
+    background: white;
+
+    font-size: 1.2rem;
+    text-transform: capitalize;
+    font-family: 'Roboto Condensed', sans-serif;
+    border: 0;
+    border-radius: 1rem;
+    line-height: 0rem;
+    text-align: right;
+    padding-right: 1rem;
+
+    height: 3rem;
+    width: 8rem;
+}
+
+input.Profile {
+    color: black;
+    background: crimson;
+
+    font-size: 1.2rem;
+    text-transform: capitalize;
+    font-family: 'Roboto Condensed', sans-serif;
+    border: 0;
+    border-radius: 1rem;
+    line-height: 0rem;
+    text-align: right;
+    padding-right: 1rem;
+
+    height: 3rem;
+    width: 10rem;
+
+    margin-right: 1rem;
+}

@@ -3,6 +3,7 @@ import avatar from "./avatar-small.png";
 import { connect } from "react-redux";
 import { setUserName } from "../../actions/user/setUserName";
 import { Progress } from "react-sweet-progress";
+import './index.css'
 
 export function Profile(props) {
   let percentageCorrect;
@@ -54,23 +55,60 @@ export function Profile(props) {
   else if (props.user.score >= 2500) userRank = ranks[14];
 
   return (
+    <>
     <div className="ProfileMainDiv">
+    <div className="flexLeft">
       <h1>Profile</h1>
       <div className="ProfileAvatarDiv">
-        <img src={avatar} alt="John Doe" />
+        <img className="ProfileAvatarDiv" src={avatar} alt="John Doe" />
       </div>
       <div className="ScoreBoardNameDiv">
-        Name: {userName} &nbsp; &nbsp;
+        <h4>Name: {userName} </h4>
         <input
           type="text"
           name="title"
+          className="Profile"
           value={props.inputValue}
           onChange={props.handleInput}
         />
-        <button onClick={props.handleClick} value="Change">
-          Change it
+        <button 
+          className="Profile" 
+          onClick={props.handleClick} 
+          value="Change">
+            Change it
         </button>
       </div>
+
+      <div className="keyMapDiv">
+        <h1>Change keymap:</h1>
+        <input
+          type="text"
+          name="title"
+          key="firstKey"
+          className="keymap"
+          onChange={props.handleFirstKeymap}
+          value={props.user.firstKey}
+        />
+        <input
+          type="text"
+          name="title"
+          key="secondKey"
+          className="keymap"
+          onChange={props.handleSecondKeymap}
+          value={props.user.secondKey}
+        />
+        <input
+          type="text"
+          name="title"
+          key="thirdKey"
+          className="keymap"
+          onChange={props.handleThirdKeymap}
+          value={props.user.thirdKey}
+        />
+      </div>
+    </div>
+
+    <div className="flexRight">
       <div className="ScoreBoardScoreDiv"> Score: {props.user.score}</div>
       <div className="ScoreBoardScoreDiv">
         Rank: {userRank}
@@ -100,7 +138,7 @@ export function Profile(props) {
         }}
       />
       You answered {percentageCorrect}% of questions correctly.
-    </div>
+    </div> </div> </>
   );
 }
 

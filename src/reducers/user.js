@@ -4,7 +4,11 @@ import { ANSWER_CORRECT } from "../actions/user/setUserScore";
 import { SET_AVERAGE_CORRECT } from "../actions/user/setUserScore";
 import { INCREMENT_CORRECT_GUESSES } from "../actions/user/incrementGuesses";
 import { RESET_CORRECT_GUESSES } from "../actions/user/resetGuesses";
-import { SET_KEYMAP } from "../actions/user/setKeymap";
+import { ANSWER_SHOWN } from "../actions/user/unhighlight";
+import { SET_FIRSTKEY } from "../actions/user/setFirstKey";
+import { SET_SECONDKEY } from "../actions/user/setSecondKey";
+import { SET_THIRDKEY } from "../actions/user/setThirdKey";
+
 
 export default (
   state = {
@@ -13,7 +17,9 @@ export default (
     score: 0,
     correctGuessesInARow: 0,
     highlightCorrect: false,
-    keyMap: ["a", "s", "d"],
+    firstKey: 'a',
+    secondKey: 's',
+    thirdKey: 'd',
     name: "John Doe"
   },
   action = {}
@@ -52,10 +58,25 @@ export default (
         ...state,
         correctGuessesInARow: 0
       };
-    case SET_KEYMAP:
+    case ANSWER_SHOWN:
       return {
         ...state,
-        name: action.payload
+        highlightCorrect: false
+      };
+    case SET_FIRSTKEY:
+      return {
+        ...state,
+        firstKey: action.payload
+      };
+      case SET_SECONDKEY:
+      return {
+        ...state,
+        secondKey: action.payload
+      };
+      case SET_THIRDKEY:
+      return {
+        ...state,
+        thirdKey: action.payload
       };
     default:
       return state;

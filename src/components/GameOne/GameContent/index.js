@@ -76,14 +76,14 @@ class GameContent extends Component {
 
   handleKeyUp(event) {
     switch (event.key) {
-      case this.props.user.keyMap[0]:
-        document.getElementById("A").click();
+      case this.props.user.firstKey:
+        document.getElementById(this.props.user.firstKey).click();
         break;
-      case this.props.user.keyMap[1]:
-        document.getElementById("S").click();
+      case this.props.user.secondKey:
+        document.getElementById(this.props.user.secondKey).click();
         break;
-      case this.props.user.keyMap[2]:
-        document.getElementById("D").click();
+      case this.props.user.thirdKey:
+        document.getElementById(this.props.user.thirdKey).click();
         break;
       default:
         break;
@@ -142,7 +142,8 @@ class GameContent extends Component {
             this.state.wrong[0],
             this.state.wrong[1],
             this.state.breed,
-            this.handleClick
+            this.handleClick,
+            this.props.user
           )}
           <Hint breed={this.state.breed} />
         </div>

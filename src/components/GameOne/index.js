@@ -4,7 +4,6 @@ import { setDogsInUse } from "../../actions/gameone/setDogsInUse";
 import { connect } from "react-redux";
 import GameContent from "./GameContent";
 import ScoreboardContainer from "../ScoreBoardContainer";
-import ProfileContainer from "../ProfileContainer";
 import ReturnButton from "../ReturnButton";
 
 class GameOne extends Component {
