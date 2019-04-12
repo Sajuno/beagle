@@ -18,11 +18,20 @@ import ModalFooter from 'react-bootstrap/ModalFooter'
 import Button from 'react-bootstrap/Button'
 
 class GameTwoContent extends Component {
+    constructor(props){
+        super(props);
+        this.handleKeyUp = this.handleKeyUp.bind(this);
+    }
+
     state = { show: false, answer: true }
 
     componentDidMount() {
         window.addEventListener("keyup", this.handleKeyUp);
         this.setupGameTwo()
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("keyup", this.handleKeyUp)
     }
 
     checkAnswer = (answer, correctBreed) => {
@@ -51,17 +60,16 @@ class GameTwoContent extends Component {
 
     handleKeyUp(event) {
         switch (event.key) {
-          case "a":
+        case this.props.user.keyMap[0]:
             document.getElementById("A").click();
             break;
-          case "s":
+        case this.props.user.keyMap[1]:
             document.getElementById("S").click();
             break;
-          case "d":
+        case this.props.user.keyMap[2]:
             document.getElementById("D").click();
             break;
-    
-          default:
+        default:
             break;
         }
     }
@@ -109,8 +117,8 @@ class GameTwoContent extends Component {
     render() {
         if(!this.state.correctImage) return 'loading...'
         return (
-            <div>
-                <h1>{this.state.correctBreed}</h1>
+            <>
+            <div className="GameTwoDIV">
                 {
                     renderImages(
                         this.state.wrongImage1,
@@ -120,18 +128,24 @@ class GameTwoContent extends Component {
                         this.state.correctBreed,
                     )
                 }
-                <br/>
+
                 <Modal show={this.state.show} size="lg">
-                    <ModalHeader>You're answer is: {this.state.answer ? 'correct' : 'wrong'}</ModalHeader>
+                    <ModalHeader>Your answer is: {this.state.answer ? 'correct' : 'wrong'}</ModalHeader>
                     <ModalBody>{this.state.answer ? `This is indeed an ${this.state.correctBreed}` : 'This was the correct answer:'}<br/><img src={this.state.correctImage} className="game-two-image" alt="Loading.."/></ModalBody>
                     <ModalFooter>
                         <Button onClick={this.handleClose}>Next question</Button>
                     </ModalFooter>
                 </Modal>
-
-                <br/>
-                <h2>Click on the foto matching the Dog's breed</h2>
             </div>
+            <div className="keyMapDivs">
+                <div className="keyMapLegend"> {this.props.user.keyMap[0]} </div>
+                <div className="keyMapLegend"> {this.props.user.keyMap[1]} </div>
+                <div className="keyMapLegend"> {this.props.user.keyMap[2]} </div>
+            </div>
+            <div className="GameTwoh2">
+                <h2>Click on the photo matching the {this.state.correctBreed} breed</h2>
+            </div>
+        </>
         )
     }
 }

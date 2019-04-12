@@ -23,7 +23,6 @@ class GameOne extends Component {
                     <GameContent breedsInUse={this.props.dogsInUse} breeds={this.props.gameOneDogs} />
                 </div>
                 <ScoreboardContainer /> 
-                  <ProfileContainer />
             </>
         )
     }

@@ -28,6 +28,10 @@ class GameContent extends Component {
     this.initQuestion();
   }
 
+  componentWillUnmount() {
+    window.removeEventListener("keyup", this.handleKeyUp)
+  }
+
   checkAnswer = answer => {
     if (answer === this.state.breed) {
       this.props.addUsedBreed(this.state.breed);
