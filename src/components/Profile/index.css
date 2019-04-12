@@ -1,0 +1,22 @@
+label.keymap {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+input.keymap {
+    color: black;
+    background: bisque;
+    border-width: 2px gray;
+
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    font-family: 'Roboto Condensed', sans-serif;
+    border-radius: 1rem;
+    line-height: 0rem;
+    text-align: center;
+
+    height: 3rem;
+    width: 3rem;
+
+    margin: 1rem;
+}

@@ -88,7 +88,9 @@ export function Profile(props) {
 }
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    user : state.user
+  };
 };
 
 export default connect(
