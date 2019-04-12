@@ -58,19 +58,25 @@ class GameTwoContent extends Component {
     this.handleShow();
   };
 
-  handleKeyUp(event) {
-    switch (event.key) {
-      case this.props.user.keyMap[0]:
-        document.getElementById("A").click();
-        break;
-      case this.props.user.keyMap[1]:
-        document.getElementById("S").click();
-        break;
-      case this.props.user.keyMap[2]:
-        document.getElementById("D").click();
-        break;
-      default:
-        break;
+    handleKeyUp(event) {
+        switch (event.key) {
+          case this.props.user.keyMap.firstKey:
+            document.getElementById("A").click();
+            break;
+          case this.props.user.keyMap.secondKey:
+            document.getElementById("S").click();
+            break;
+          case this.props.user.keyMap.thirdKey:
+            document.getElementById("D").click();
+            break;
+          default:
+            break;
+        }
+      }
+    
+    handleClick = (answer, correctBreed) => {
+        this.setState({ answer })
+        this.checkAnswer(answer, correctBreed)
     }
   }
 
@@ -113,9 +119,31 @@ class GameTwoContent extends Component {
     this.setupGameTwo();
   };
 
+
   handleShow = () => {
     this.setState({ show: true });
   };
+                <Modal show={this.state.show} size="lg">
+                    <ModalHeader>Your answer is: {this.state.answer ? 'correct' : 'wrong'}</ModalHeader>
+                    <ModalBody>{this.state.answer ? `This is indeed an ${this.state.correctBreed}` : 'This was the correct answer:'}<br/><img src={this.state.correctImage} className="game-two-image" alt="Loading.."/></ModalBody>
+                    <ModalFooter>
+                        <Button className="modal-button" onClick={this.handleClose}>Next question</Button>
+                    </ModalFooter>
+                </Modal>
+            </div>
+            <div className="keyMapDivs">
+                <div className="keyMapLegend"> {this.props.user.keyMap.firstKey} </div>
+                <div className="keyMapLegend"> {this.props.user.keyMap.secondKey} </div>
+                <div className="keyMapLegend"> {this.props.user.keyMap.thirdKey} </div>
+            </div>
+            <div className="GameTwoh2">
+                <h2>Click on the photo matching the {this.state.correctBreed} breed</h2>
+            </div>
+        </>
+        )
+    }
+}
+
 
   render() {
     if (!this.state.correctImage) return "loading...";
