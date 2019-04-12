@@ -25,6 +25,10 @@ class GameTwoContent extends Component {
         this.setupGameTwo()
     }
 
+    componentWillUnmount() {
+        window.removeEventListener("keyup", this.handleKeyUp)
+    }
+
     checkAnswer = (answer, correctBreed) => {
         if(answer) {
             this.props.setUserScore(
@@ -109,8 +113,8 @@ class GameTwoContent extends Component {
     render() {
         if(!this.state.correctImage) return 'loading...'
         return (
-            <div>
-                <h1>{this.state.correctBreed}</h1>
+            <>
+            <div className="GameTwoDIV">
                 {
                     renderImages(
                         this.state.wrongImage1,
@@ -120,18 +124,24 @@ class GameTwoContent extends Component {
                         this.state.correctBreed,
                     )
                 }
-                <br/>
+
                 <Modal show={this.state.show} size="lg">
-                    <ModalHeader>You're answer is: {this.state.answer ? 'correct' : 'wrong'}</ModalHeader>
+                    <ModalHeader>Your answer is: {this.state.answer ? 'correct' : 'wrong'}</ModalHeader>
                     <ModalBody>{this.state.answer ? `This is indeed an ${this.state.correctBreed}` : 'This was the correct answer:'}<br/><img src={this.state.correctImage} className="game-two-image" alt="Loading.."/></ModalBody>
                     <ModalFooter>
                         <Button onClick={this.handleClose}>Next question</Button>
                     </ModalFooter>
                 </Modal>
-
-                <br/>
-                <h2>Click on the foto matching the Dog's breed</h2>
             </div>
+            <div className="keyMapDivs">
+                <div className="keyMapLegend"> A </div>
+                <div className="keyMapLegend"> S </div>
+                <div className="keyMapLegend"> D </div>
+            </div>
+            <div className="GameTwoh2">
+                <h2>Click on the photo matching the {this.state.correctBreed} breed</h2>
+            </div>
+        </>
         )
     }
 }
