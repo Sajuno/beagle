@@ -16,6 +16,7 @@ class GameTwo extends Component {
             <div>
                 <ReturnButton toPath={'../home'} pageName={'Home'}/>
                 <ReturnButton toPath={'../dogopedia'} pageName={'Dogopedia'}/>
+                <ReturnButton toPath={'../profile'} pageName={'Profile'}/>
                 <GameTwoContent breedsInUse={this.props.dogsInUse} breeds={this.props.gameOneDogs} />
                 <ScoreboardContainer /> 
             </div> 
