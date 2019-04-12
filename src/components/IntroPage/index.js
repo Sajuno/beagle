@@ -1,16 +1,23 @@
 import React, { Component } from 'react'
-import {Spring} from 'react-spring/renderprops'
+import Enter from './Enter'
 import './index.css'
+import IntroText from './IntroText'
 
 export default class index extends Component {
-  render() {
-    return(
-    <Spring
-    config={{duration: 2000}}
-    from={{ opacity: 0 }}
-    to={{ opacity: 1 }}>
-    {props => <div style={props}><h1 className='intro-h1'>Henk de Vries presents...</h1></div>}
-    </Spring>
-    )
-  }
+
+    render() {
+        return (
+            <div className="intro-main">
+                <div id="overlay"></div>
+                <div className="textbox-top">
+                    <IntroText delay={2000} text="B.E.A.G.L Entertainment Presents..." />
+                </div>
+                <span class="sexy-line"></span>
+                <div className="textbox-bottom">
+                    <IntroText delay={5500} text="A Henk de Vries production..."/>
+                </div>
+                <Enter delay={8000}/>
+            </div>
+        )
+    }
 }

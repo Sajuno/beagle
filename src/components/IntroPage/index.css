@@ -1,3 +1,102 @@
+@import url('https://fonts.googleapis.com/css?family=Underdog');
+
+#overlay{
+    background: url('https://stmed.net/sites/default/files/schnauzer-wallpapers-25611-4719705.jpg') center top no-repeat;
+    -webkit-filter: grayscale(100%);
+    z-index: -1;
+    opacity: 1; /*make it as your requirement*/
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    animation: grayScaleTransition 8s forwards;
+}
+
+@keyframes scaleIn {
+    0% {width: 0%;}
+    50% {width: 0%;}
+    100% {width: 70%;}
+}
+
+@keyframes grayScaleTransition {
+    0% {
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    15% {
+        -webkit-filter: grayscale(100%);
+    }
+    100% {
+        -webkit-filter: grayscale(0%);
+    }
+}
+
+.sexy-line{ 
+    display:block;
+    border:none;
+    color:white;
+    height:2px;
+    background:black;
+    background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 350, from(#fff), to(#333));
+    animation: scaleIn 2s;
+    width: 70%;
+    margin: 10px auto;
+}
+
 .intro-h1 {
-    color: red;
+    color: rgb(107, 14, 14);
+    font-family: 'Underdog', cursive;
+    font-size: 60px;
+}
+
+.textbox-top, .textbox-bottom {
+    width: 70%;
+    margin: auto;
+    text-align: center;
+    height: 100px;
+}
+
+.textbox-top {
+    margin-top: 10%;
+}
+
+.textbox-bottom {
+    margin-top: 40px;
+}
+
+.intro-input {
+    margin-top: 100px;
+    width: 300px;
+    height: 30px;
+    font-size: 25px;
+    font-style: italic;
+}
+
+.intro-submit {
+    border: none;
+    background: rgb(127, 144, 177);
+    color: white;
+    font-size: 50px;
+    padding: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 0.5em;
+    margin-top: 30px;
+    animation: grow 1s infinite;
+    border: 1px solid #333;
+    transition: 0.2s all;
+    opacity: 0.6
+}
+
+.intro-submit:hover {
+    opacity: 1
+}
+
+@keyframes grow {
+    0% {transform: scale(0.9)}
+    50% {transform: scale(1.1)}
+    100% {transform: scale(0.9)}
 }
