@@ -4,7 +4,6 @@ import { ANSWER_CORRECT } from "../actions/user/setUserScore";
 import { SET_AVERAGE_CORRECT } from "../actions/user/setUserScore";
 import { INCREMENT_CORRECT_GUESSES } from "../actions/user/incrementGuesses";
 import { RESET_CORRECT_GUESSES } from "../actions/user/resetGuesses";
-import { ANSWER_SHOWN } from "../actions/user/unhighlight";
 import { SET_KEYMAP } from "../actions/user/setKeymap";
 
 export default (
@@ -30,7 +29,6 @@ export default (
       return {
         ...state,
         questionsAnswered: state.questionsAnswered + 1,
-        highlightCorrect: true
       };
     case ANSWER_CORRECT:
       return {
@@ -53,11 +51,6 @@ export default (
       return {
         ...state,
         correctGuessesInARow: 0
-      };
-    case ANSWER_SHOWN:
-      return {
-        ...state,
-        highlightCorrect: false
       };
     case SET_KEYMAP:
       return {
