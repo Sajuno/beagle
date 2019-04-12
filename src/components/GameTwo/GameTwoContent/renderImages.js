@@ -17,14 +17,14 @@ export function renderImages(wrongOne, wrongTwo, correctPicture, handleClick, co
             return isCorrect
                 ? <img
                     onClick={() => { handleClickWrapper(true) }}
-                    alt="correct"
+                    alt="dogpicture"
                     id={letter}
                     src={img}
                     className="game-two-image"
                 /> 
                 : <img
                     onClick={() => { handleClickWrapper(false) }}
-                    alt="wrong"
+                    alt="dogpicture"
                     id={letter}
                     className="game-two-image"
                     src={img}

@@ -3,7 +3,6 @@ import request from 'superagent'
 import {getRandomBreed} from '../../GameOne/GameContent/getRandomBreed'
 import { renderImages } from './renderImages'
 import { setUserScore } from '../../../actions/user/setUserScore'
-import { unhighlight } from '../../../actions/user/unhighlight'
 import './index.css';
 import { connect } from 'react-redux'
 import {addUsedBreed} from '../../../actions/gameone/addUsedBreed'
@@ -16,6 +15,9 @@ import ModalHeader from 'react-bootstrap/ModalHeader'
 import ModalBody from 'react-bootstrap/ModalBody'
 import ModalFooter from 'react-bootstrap/ModalFooter'
 import Button from 'react-bootstrap/Button'
+import '../../../modal.css'
+import { changeGame } from "../../../actions/gamethree/changeGame";
+
 
 class GameTwoContent extends Component {
     constructor(props){
@@ -107,6 +109,7 @@ class GameTwoContent extends Component {
     
     handleClose = () => {
         this.setState({ show: false })
+        this.props.changeGame()
         this.setupGameTwo()
     }
     
@@ -162,9 +165,9 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, { 
     setUserScore,
-    unhighlight,
     addUsedBreed, 
     incrementCorrectGuesses, 
     setDogsInUse, 
     resetCorrectGuesses,
+    changeGame,
 })(GameTwoContent)
