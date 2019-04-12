@@ -128,7 +128,7 @@ class GameContent extends Component {
             {this.state.answer ? `This is indeed a ${this.state.breed}` : 'Better luck next time'}
           </ModalBody>
           <ModalFooter>
-            <Button onClick={this.handleClose}>Next question</Button>
+            <Button className="modal-button" onClick={this.handleClose}>Next question</Button>
           </ModalFooter>
         </Modal>
 
