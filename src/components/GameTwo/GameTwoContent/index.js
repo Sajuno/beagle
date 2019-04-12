@@ -136,7 +136,7 @@ class GameTwoContent extends Component {
                     <ModalHeader>Your answer is: {this.state.answer ? 'correct' : 'wrong'}</ModalHeader>
                     <ModalBody>{this.state.answer ? `This is indeed an ${this.state.correctBreed}` : 'This was the correct answer:'}<br/><img src={this.state.correctImage} className="game-two-image" alt="Loading.."/></ModalBody>
                     <ModalFooter>
-                        <Button onClick={this.handleClose}>Next question</Button>
+                        <Button className="modal-button" onClick={this.handleClose}>Next question</Button>
                     </ModalFooter>
                 </Modal>
             </div>
