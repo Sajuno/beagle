@@ -21,6 +21,7 @@ class GameTwoContent extends Component {
     state = { show: false, answer: true }
 
     componentDidMount() {
+        window.addEventListener("keyup", this.handleKeyUp);
         this.setupGameTwo()
     }
 
@@ -36,7 +37,6 @@ class GameTwoContent extends Component {
                 this.props.setDogsInUse(selectRandomItems(3, this.props.breeds))
                 this.props.resetCorrectGuesses()
             }
-            // alert("You are correct!")
         }
         else {
             this.props.setUserScore(
@@ -49,6 +49,23 @@ class GameTwoContent extends Component {
         this.handleShow()
     }
 
+    handleKeyUp(event) {
+        switch (event.key) {
+          case "a":
+            document.getElementById("A").click();
+            break;
+          case "s":
+            document.getElementById("S").click();
+            break;
+          case "d":
+            document.getElementById("D").click();
+            break;
+    
+          default:
+            break;
+        }
+    }
+    
     handleClick = (answer, correctBreed) => {
         this.setState({ answer })
         this.checkAnswer(answer, correctBreed)
@@ -79,18 +96,7 @@ class GameTwoContent extends Component {
         }
         return wrongBreed
     }
-
-    // alertWrong () {
-    //     setTimeout(
-    //         () => {
-    //             window.requestAnimationFrame(() => {
-    //                 alert(`Wrong! The correct image for the ${this.state.correctBreed} is:`)
-    //                 this.props.unhighlight()
-    //             })
-    //         },
-    //         0
-    //     )
-    // }
+    
     handleClose = () => {
         this.setState({ show: false })
         this.setupGameTwo()
@@ -101,10 +107,6 @@ class GameTwoContent extends Component {
     }
 
     render() {
-        // if (this.props.highlightCorrect) {
-        //     this.alertWrong()
-        // }
-
         if(!this.state.correctImage) return 'loading...'
         return (
             <div>
@@ -116,7 +118,6 @@ class GameTwoContent extends Component {
                         this.state.correctImage,
                         this.handleClick,
                         this.state.correctBreed,
-                        this.props.highlightCorrect
                     )
                 }
                 <br/>
