@@ -60,19 +60,19 @@ class GameTwoContent extends Component {
 
     handleKeyUp(event) {
         switch (event.key) {
-        case this.props.user.keyMap[0]:
+          case this.props.user.keyMap.firstKey:
             document.getElementById("A").click();
             break;
-        case this.props.user.keyMap[1]:
+          case this.props.user.keyMap.secondKey:
             document.getElementById("S").click();
             break;
-        case this.props.user.keyMap[2]:
+          case this.props.user.keyMap.thirdKey:
             document.getElementById("D").click();
             break;
-        default:
+          default:
             break;
         }
-    }
+      }
     
     handleClick = (answer, correctBreed) => {
         this.setState({ answer })
@@ -138,9 +138,9 @@ class GameTwoContent extends Component {
                 </Modal>
             </div>
             <div className="keyMapDivs">
-                <div className="keyMapLegend"> {this.props.user.keyMap[0]} </div>
-                <div className="keyMapLegend"> {this.props.user.keyMap[1]} </div>
-                <div className="keyMapLegend"> {this.props.user.keyMap[2]} </div>
+                <div className="keyMapLegend"> {this.props.user.keyMap.firstKey} </div>
+                <div className="keyMapLegend"> {this.props.user.keyMap.secondKey} </div>
+                <div className="keyMapLegend"> {this.props.user.keyMap.thirdKey} </div>
             </div>
             <div className="GameTwoh2">
                 <h2>Click on the photo matching the {this.state.correctBreed} breed</h2>

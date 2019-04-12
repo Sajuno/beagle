@@ -1,9 +1,11 @@
 import {shuffle} from '../shuffle'
 import React from 'react'
+import { connect } from "react-redux";
 
-export function renderButtons(wrongOne, wrongTwo, correct, handleClick) {
+
+export function renderButtons(wrongOne, wrongTwo, correct, handleClick, user) {
     const answers = shuffle([correct, wrongOne, wrongTwo])		     
-    const keyMap = ['A','S','D']
+    const keyMap = [user.firstKey,user.secondKey,user.thirdKey]
 
     const answersWithLetters = answers.map((answer, i )=> ({ text: answer, letter: keyMap[i] }))
 
@@ -24,3 +26,12 @@ export function renderButtons(wrongOne, wrongTwo, correct, handleClick) {
         )
     )
 }
+
+const mapStateToProps = state => {
+    return {
+      user: state.user
+    };
+  };
+
+  export default connect(mapStateToProps)(renderButtons)
+  
