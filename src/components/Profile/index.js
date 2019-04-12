@@ -2,12 +2,13 @@ import React from "react";
 import avatar from "./avatar-small.png";
 import { connect } from "react-redux";
 import { setUserName } from "../../actions/user/setUserName";
-
+import { Progress } from "react-sweet-progress";
 
 export function Profile(props) {
   let percentageCorrect;
   let userName = "John Doe";
 
+  // if available, read username from store
   if (props.user.name) userName = props.user.name;
 
   if (!props.user.averageCorrect) {
@@ -15,7 +16,7 @@ export function Profile(props) {
   } else {
     percentageCorrect = props.user.averageCorrect;
   }
-  
+
   // calculate user's rank
   let userRank = "Newbie";
   const ranks = [
@@ -32,7 +33,8 @@ export function Profile(props) {
     "Dog Specialist",
     "Dog Whisperer",
     "Dogopedia Expert",
-    "Wizard"
+    "Wizard",
+    "Ultra Mega End Dog Boss"
   ];
 
   if (props.user.score < 100) userRank = ranks[0];
@@ -48,7 +50,8 @@ export function Profile(props) {
   else if (props.user.score < 1400) userRank = ranks[10];
   else if (props.user.score < 1600) userRank = ranks[11];
   else if (props.user.score < 1800) userRank = ranks[12];
-  else if (props.user.score >= 800) userRank = ranks[13];
+  else if (props.user.score < 2500) userRank = ranks[13];
+  else if (props.user.score >= 2500) userRank = ranks[14];
 
   return (
     <div className="ProfileMainDiv">
@@ -65,7 +68,7 @@ export function Profile(props) {
           onChange={props.handleInput}
         />
         <button onClick={props.handleClick} value="Change">
-          click me
+          Change it
         </button>
       </div>
       <div className="ScoreBoardScoreDiv"> Score: {props.user.score}</div>
@@ -79,17 +82,31 @@ export function Profile(props) {
         <br />
       </div>
       <div className="ScoreBoardPercentageDiv" />
-      Percentage correct:
-      <br />
-      <br />
-      INSERT ALBERT'S PROGRESS BAR HERE
+      <Progress
+        percent={percentageCorrect}
+        theme={{
+          success: {
+            symbol: "🐕",
+            color: "lightgreen"
+          },
+          active: {
+            symbol: "🐩",
+            color: "tomato"
+          },
+          default: {
+            symbol: "💩",
+            color: "crimson"
+          }
+        }}
+      />
+      You answered {percentageCorrect}% of questions correctly.
     </div>
   );
 }
 
 const mapStateToProps = state => {
   return {
-    user : state.user
+    user: state.user
   };
 };
 

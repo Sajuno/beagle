@@ -28,9 +28,9 @@ export default function ScoreBoard(props) {
     "Dog Specialist",
     "Dog Whisperer",
     "Dogopedia Expert",
-    "Wizard"
+    "Wizard",
+    "Ultra Mega End Dog Boss"
   ];
-
   if (props.user.score < 100) userRank = ranks[0];
   else if (props.user.score < 200) userRank = ranks[1];
   else if (props.user.score < 400) userRank = ranks[2];
@@ -44,7 +44,8 @@ export default function ScoreBoard(props) {
   else if (props.user.score < 1400) userRank = ranks[10];
   else if (props.user.score < 1600) userRank = ranks[11];
   else if (props.user.score < 1800) userRank = ranks[12];
-  else if (props.user.score >= 800) userRank = ranks[13];
+  else if (props.user.score < 2500) userRank = ranks[13];
+  else if (props.user.score >= 2500) userRank = ranks[14];
 
   return (
     <div className="ScoreboardMainDiv">
@@ -74,7 +75,7 @@ export default function ScoreBoard(props) {
               }
             }}
           />
-          {userRank}
+          Rank: {userRank}
         </div>
       </div>
     </div>
