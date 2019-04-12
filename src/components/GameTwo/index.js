@@ -5,7 +5,6 @@ import GameTwoContent from './GameTwoContent'
 import ScoreboardContainer from '../ScoreBoardContainer'
 import ReturnButton from '../ReturnButton'
 
-
 class GameTwo extends Component {
     componentDidMount() {
         this.props.getDogs()

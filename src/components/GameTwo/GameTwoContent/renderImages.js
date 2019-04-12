@@ -1,27 +1,31 @@
 import {shuffle} from '../../GameOne/shuffle'
 import React from 'react'
 
-export function renderImages(wrongOne, wrongTwo, correctPicture, handleClick, correctBreed, highlightCorrect) {
+export function renderImages(wrongOne, wrongTwo, correctPicture, handleClick, correctBreed) {
     const images = shuffle([correctPicture, wrongOne, wrongTwo])
     const handleClickWrapper = isAccurate => {
         handleClick(isAccurate, correctBreed)
     }
+    const keyMap = ['A','S','D']
+
+    const answersWithLetters = images.map((answer, i ) => ({ img: answer, letter: keyMap[i] }))
+
 
     return (
-        images.map(img => {
+        answersWithLetters.map(({ img, letter }) => {
             const isCorrect = img === correctPicture
-
             return isCorrect
                 ? <img
                     onClick={() => { handleClickWrapper(true) }}
                     alt="correct"
+                    id={letter}
                     src={img}
                     className="game-two-image"
-                    id={highlightCorrect ? 'correct-image' : null}
                 /> 
                 : <img
                     onClick={() => { handleClickWrapper(false) }}
                     alt="wrong"
+                    id={letter}
                     className="game-two-image"
                     src={img}
                 />

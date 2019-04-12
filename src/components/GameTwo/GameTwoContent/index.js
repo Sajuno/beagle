@@ -11,37 +11,67 @@ import {incrementCorrectGuesses} from '../../../actions/user/incrementGuesses'
 import {resetCorrectGuesses} from '../../../actions/user/resetGuesses'
 import {setDogsInUse} from '../../../actions/gameone/setDogsInUse'
 import {selectRandomItems} from '../../GameOne/selectRandomItems'
+import Modal from 'react-bootstrap/Modal'
+import ModalHeader from 'react-bootstrap/ModalHeader'
+import ModalBody from 'react-bootstrap/ModalBody'
+import ModalFooter from 'react-bootstrap/ModalFooter'
+import Button from 'react-bootstrap/Button'
 
 class GameTwoContent extends Component {
-    state = { }
+    state = { show: false, answer: true }
 
     componentDidMount() {
+        window.addEventListener("keyup", this.handleKeyUp);
         this.setupGameTwo()
     }
 
     checkAnswer = (answer, correctBreed) => {
         if(answer) {
-            this.props.setUserScore(true)
+            this.props.setUserScore(
+                true,
+                this.props.user.questionsAnsweredCorrectly + 1,
+                this.props.user.questionsAnswered + 1
+              )
             this.props.incrementCorrectGuesses()
             if(this.props.user.correctGuessesInARow === 5) {
                 this.props.setDogsInUse(selectRandomItems(3, this.props.breeds))
                 this.props.resetCorrectGuesses()
             }
-            alert("You are correct!")
         }
         else {
-            this.props.setUserScore(false)
+            this.props.setUserScore(
+                false,
+                this.props.user.questionsAnsweredCorrectly,
+                this.props.user.questionsAnswered + 1
+              )
             this.props.resetCorrectGuesses()
         }
+        this.handleShow()
     }
 
+    handleKeyUp(event) {
+        switch (event.key) {
+          case "a":
+            document.getElementById("A").click();
+            break;
+          case "s":
+            document.getElementById("S").click();
+            break;
+          case "d":
+            document.getElementById("D").click();
+            break;
+    
+          default:
+            break;
+        }
+    }
+    
     handleClick = (answer, correctBreed) => {
+        this.setState({ answer })
         this.checkAnswer(answer, correctBreed)
-        this.setupGameTwo()
     }
 
     setupGameTwo = () => {
-        console.log("setupgame:", this.props.breedsInUse)
         const correctBreed = getRandomBreed(this.props.breedsInUse)
         const wrongBreed1 = this.getWrongBreed(correctBreed)
         const wrongBreed2 = this.getWrongBreed(correctBreed)
@@ -66,24 +96,17 @@ class GameTwoContent extends Component {
         }
         return wrongBreed
     }
-
-    alertWrong () {
-        setTimeout(
-            () => {
-                window.requestAnimationFrame(() => {
-                    alert(`Wrong! The correct image for the ${this.state.correctBreed} is:`)
-                    this.props.unhighlight()
-                })
-            },
-            0
-        )
+    
+    handleClose = () => {
+        this.setState({ show: false })
+        this.setupGameTwo()
+    }
+    
+    handleShow = () => {
+        this.setState({ show: true });
     }
 
     render() {
-        if (this.props.highlightCorrect) {
-            this.alertWrong()
-        }
-
         if(!this.state.correctImage) return 'loading...'
         return (
             <div>
@@ -95,10 +118,17 @@ class GameTwoContent extends Component {
                         this.state.correctImage,
                         this.handleClick,
                         this.state.correctBreed,
-                        this.props.highlightCorrect
                     )
                 }
                 <br/>
+                <Modal show={this.state.show} size="lg">
+                    <ModalHeader>You're answer is: {this.state.answer ? 'correct' : 'wrong'}</ModalHeader>
+                    <ModalBody>{this.state.answer ? `This is indeed an ${this.state.correctBreed}` : 'This was the correct answer:'}<br/><img src={this.state.correctImage} className="game-two-image" alt="Loading.."/></ModalBody>
+                    <ModalFooter>
+                        <Button onClick={this.handleClose}>Next question</Button>
+                    </ModalFooter>
+                </Modal>
+
                 <br/>
                 <h2>Click on the foto matching the Dog's breed</h2>
             </div>
